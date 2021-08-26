@@ -3,6 +3,14 @@ const LINKS = Object.freeze({
     TITLE: 'Dashboard',
     HREF: '/'
   },
+  PURCHASE: {
+    TITLE: 'Purchase',
+    HREF: '/purchase'
+  },
+  FARM: {
+    TITLE: 'Farming',
+    HREF: '/farm'
+  },
 });
 
 export default LINKS;
