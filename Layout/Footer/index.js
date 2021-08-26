@@ -31,7 +31,7 @@ const Footer = () => {
 
   return (
     <footer className={classes.root}>
-      <div container className={classes.container}>
+      <div className={classes.container}>
         <FooterContact />
         <Logo />
       </div>
