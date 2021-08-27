@@ -1,24 +1,28 @@
 
 const SOCIALS = Object.freeze({
   TELEGRAM: {
-    HREF: 'https://t.me/throwsnowballs',
+    HREF: 'https://t.me/mine_blockchain',
     LABEL: 'telegram link'
   },
   MEDIUM: {
-    HREF: 'https://medium.com/snowball-finance',
+    HREF: 'https://mineblockchain.medium.com/',
     LABEL: 'medium link'
   },
   TWITTER: {
-    HREF: 'https://twitter.com/throwsnowballs',
+    HREF: 'https://twitter.com/mine_blockchain',
     LABEL: 'twitter link'
   },
   GITHUB: {
-    HREF: 'https://discord.com/invite/BGpEHvehMz',
+    HREF: 'https://github.com/Mine-Blockchain',
     LABEL: 'discord link'
   },
-  DOC: {
-    HREF: 'https://snowballs.gitbook.io/snowball-docs',
-    LABEL: 'doc link'
+  EMAIL: {
+    HREF: 'contact@mine.network',
+    LABEL: 'email link'
+  },
+  WEB: {
+    HREF: 'https://www.mine.network',
+    LABEL: 'web link'
   },
 })
 

@@ -42,38 +42,37 @@ const theme = responsiveFontSizes(
     },
     palette: {
       primary: {
-        main: '#0085EB',
+        main: '#00d5cf',
       },
       secondary: {
-        main: '#B9B9C3',
+        main: '#fe03b1',
         contrastText: '#ffffff',
       },
       danger: {
-        main: '#eb196e',
+        main: '#fe03b1',
       },
       background: {
-        default: '#F8F8F8',
-        primary: '#FFFFFF',
-        lightBlue: 'rgb(114 187 243 / 15%)',
+        default: '#FFFFFF',
+        primary: '#000000',
       },
       text: {
-        primary: '#6E6B7B',
-        secondary: '#28C76F',
+        primary: '#FFFFFF',
+        secondary: '#000000',
       },
     },
     custom: {
       palette: {
         white: '#FFFFFF',
-        lightGrey: '#F8F8F8',
-        darkGrey: '#5E5873',
-        lightBlue: '#C8E6FE',
-        blue: '#1A93F2',
-        darkBlue: '#1E2848',
+        lightBlue: '#4283c1',
+        blue: '#29316c',
+        darkBlue: '#2b2e3f',
         green: '#28C76F',
-        darkGreen: '#2A4428'
+        pink: '#fe03b1',
+        yellow: '#ffb418'
       },
       layout: {
-        maxCardWidth: 513,
+        topAppBarHeight: 64,
+        maxFooterWidth: 520,
         maxDesktopWidth: 1040,
         openDrawerWidth: 250,
         closedDrawerWidth: 57,

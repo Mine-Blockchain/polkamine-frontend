@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     width: '100%',
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.background.primary,
     cursor: 'pointer',
     transition: 'ease-out 0.4s',
     borderRadius: theme.spacing(1.5),
