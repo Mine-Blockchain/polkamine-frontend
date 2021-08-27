@@ -1,12 +1,11 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
 const fontFamily = [
-  'Montserrat',
+  'Arial',
   'Rubik',
   '-apple-system',
   'BlinkMacSystemFont',
   '"Segoe UI"',
-  'Arial',
   'sans-serif',
   '"Apple Color Emoji"',
   '"Segoe UI Emoji"',
@@ -23,12 +22,12 @@ const theme = responsiveFontSizes(
         '@global': {
           '@font-face': [
             {
-              fontFamily: 'Montserrat',
+              fontFamily: 'Arial',
               fontStyle: 'normal',
               fontDisplay: 'swap',
               fontWeight: 400,
-              src: `local('Montserrat'),
-                            url('/assets/fonts/Montserrat.woff2') format('woff2')`,
+              src: `local('Arial'),
+                            url('/assets/fonts/Arial.woff') format('woff')`,
             },
           ],
         },
@@ -68,14 +67,13 @@ const theme = responsiveFontSizes(
         darkBlue: '#2b2e3f',
         green: '#28C76F',
         pink: '#fe03b1',
-        yellow: '#ffb418'
+        yellow: '#ffb418',
+        border: '#989898'
       },
       layout: {
         topAppBarHeight: 64,
         maxFooterWidth: 520,
-        maxDesktopWidth: 1040,
-        openDrawerWidth: 250,
-        closedDrawerWidth: 57,
+        maxDeskWidth: 1440
       }
     },
   })
