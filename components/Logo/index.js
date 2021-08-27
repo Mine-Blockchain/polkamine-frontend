@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Logo = ({
-  isLabel = false,
+  isLabel = true,
   className,
   ...rest
 }) => {

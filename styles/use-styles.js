@@ -6,7 +6,7 @@ const useCommonStyles = makeStyles(theme => ({
     width: '100%',
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
-    maxWidth: theme.custom.layout.maxDesktopWidth,
+    maxWidth: theme.custom.layout.maxDeskWidth,
     [theme.breakpoints.down('sm')]: {
       maxWidth: '100%',
       paddingLeft: theme.spacing(2),
@@ -15,24 +15,6 @@ const useCommonStyles = makeStyles(theme => ({
   }
 }));
 
-const useFormStyles = makeStyles((theme) => ({
-  button: {
-    fontSize: 24,
-    textTransform: 'capitalize'
-  },
-  iconContainer: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  icon: {
-    cursor: 'pointer',
-    position: 'absolute',
-    bottom: -theme.spacing(4.5),
-  }
-}));
-
 export {
-  useCommonStyles,
-  useFormStyles
+  useCommonStyles
 };
