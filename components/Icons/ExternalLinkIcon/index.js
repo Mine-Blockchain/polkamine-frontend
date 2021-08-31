@@ -19,10 +19,11 @@ const ExternalLinkIcon = ({
   const classes = useStyles();
 
   return (
-    <SvgIcon viewBox={viewBox || '0 0 14 14'} {...rest} className={clsx(classes.root, className)}>
-      <path d="M11.76 6.43001V9.86C11.7574 10.7556 11.4004 11.6138 10.7671 12.2471C10.1338 12.8804 9.27563 13.2374 8.38 13.24H3.88C2.98438 13.2374 2.1261 12.8804 1.4928 12.2471C0.859496 11.6138 0.502638 10.7556 0.5 9.86V5.35001C0.50527 4.45612 0.863319 3.60049 1.49634 2.96935C2.12936 2.3382 2.98611 1.98262 3.88 1.98H6.88" stroke="#00D5CF" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M6.12988 7.61L13.2399 0.5" stroke="#00D5CF" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M13.2401 5.15V0.5H8.6001" stroke="#00D5CF" strokeLinecap="round" strokeLinejoin="round" />
+    <SvgIcon viewBox={viewBox || '0 0 13.74 13.74'} {...rest} className={clsx(classes.root, className)}>
+      <g id="图层_5" data-name="图层 5">
+        <path fill='#00d5cf' d="M8.39,13.74H3.88A3.88,3.88,0,0,1,0,9.86V5.35A3.88,3.88,0,0,1,3.88,1.48H6.93a.5.5,0,0,1,.5.5.5.5,0,0,1-.5.5h-3A2.88,2.88,0,0,0,1,5.35V9.86a2.88,2.88,0,0,0,2.88,2.88H8.39a2.88,2.88,0,0,0,2.87-2.88V6.44a.5.5,0,0,1,.5-.5.5.5,0,0,1,.5.5V9.86A3.88,3.88,0,0,1,8.39,13.74Z" />
+        <path fill='#00d5cf' d="M6.13,8.11a.5.5,0,0,1-.35-.85L12.89.15a.48.48,0,0,1,.7,0,.48.48,0,0,1,0,.7L6.48,8A.47.47,0,0,1,6.13,8.11Z" /><path class="cls-1" d="M13.24,5.65a.5.5,0,0,1-.5-.5V1H8.59a.5.5,0,0,1,0-1h4.65a.5.5,0,0,1,.5.5V5.15A.5.5,0,0,1,13.24,5.65Z" />
+      </g>
     </SvgIcon>
   )
 }

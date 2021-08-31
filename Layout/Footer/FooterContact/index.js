@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(to right, ${theme.custom.palette.pink}, ${theme.custom.palette.yellow})`
   },
   copyright: {
-    fontSize: 10,
+    fontSize: 12,
     marginTop: theme.spacing(1.5),
     color: theme.palette.background.default,
     textDecoration: 'unset',
@@ -50,7 +50,7 @@ const FooterContact = () => {
       <Divider className={classes.borderLine} />
       <Typography className={classes.copyright}>
         <span>Copyright</span> 
-        <span>2021 The Polkamine Network</span> 
+        <span>2021 The Miine Network</span> 
         <span>All Rights Reserved</span> 
       </Typography>
     </div>

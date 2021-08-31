@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 18,
     fontWeight: 'bold',
     color: theme.palette.text.secondary,
+    marginBottom: theme.spacing(1)
   },
   root: {
     borderRadius: theme.spacing(2),
