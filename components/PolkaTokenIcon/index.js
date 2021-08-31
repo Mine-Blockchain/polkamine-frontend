@@ -9,8 +9,7 @@ const useStyles = makeStyles(() => ({
   tokenImage: props => ({
     width: props.size,
     height: props.size,
-    objectFit: 'contain',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    objectFit: 'contain'
   })
 }));
 
