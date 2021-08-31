@@ -1,0 +1,20 @@
+const PURCHASE_TABS = Object.freeze({
+  pBTC35A: {
+    LABEL: 'POW BTC-35W/T',
+    VALUE: 'pBTC35A'
+  },
+  pETH18C: {
+    LABEL: 'POW ETH-1.8W/M',
+    VALUE: 'pETH18C'
+  }
+})
+
+const PURCHASE_TABS_ARRAY = [
+  PURCHASE_TABS.pBTC35A,
+  PURCHASE_TABS.pETH18C
+]
+
+export {
+  PURCHASE_TABS,
+  PURCHASE_TABS_ARRAY
+};

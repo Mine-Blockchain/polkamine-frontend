@@ -41,6 +41,7 @@ class MyDocument extends Document {
           <style jsx global>
             {globalStyles}
           </style>
+          <script type="text/javascript" src='/assets/js/three.min.js'></script>
         </Head>
         <body id='body'>
           <Main />

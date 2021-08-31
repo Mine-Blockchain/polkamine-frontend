@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    border: `1px solid ${theme.palette.text.primary}`,
+    border: `1.5px solid ${theme.palette.text.primary}`,
     borderRadius: 50,
   },
   balance: {

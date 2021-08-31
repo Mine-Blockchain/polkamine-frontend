@@ -68,7 +68,7 @@ const theme = responsiveFontSizes(
         green: '#28C76F',
         pink: '#fe03b1',
         yellow: '#ffb418',
-        border: '#989898'
+        border: '#999999'
       },
       layout: {
         topAppBarHeight: 64,
