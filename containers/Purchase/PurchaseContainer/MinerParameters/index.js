@@ -26,13 +26,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     padding: theme.spacing(1.5)
   },
+  labelContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-start'
+    },
+  },
   label: {
     fontSize: 14,
-    textAlign: 'center',
     color: theme.custom.palette.border,
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'left',
-    },
+    marginRight: theme.spacing(0.5)
   },
   value: {
     fontSize: 14,
@@ -61,25 +66,28 @@ const MinerParameters = () => {
       </Typography>
       <div className={classes.root}>
         <Grid container spacing={3} className={classes.rowContainer}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className={classes.labelContainer}>
             <Typography className={classes.label}>
               Efficiency
             </Typography>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className={classes.labelContainer}>
             <Typography className={classes.label}>
-              Dissipation rate<AlertIcon />
+              Dissipation rate
             </Typography>
+            <AlertIcon />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className={classes.labelContainer}>
             <Typography className={classes.label}>
-              Online rate<AlertIcon />
+              Online rate
             </Typography>
+            <AlertIcon />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className={classes.labelContainer}>
             <Typography className={classes.label}>
-              Net Earnings/T<AlertIcon />
+              Net Earnings/T
             </Typography>
+            <AlertIcon />
           </Grid>
         </Grid>
         <Divider className={classes.rowDivider} />

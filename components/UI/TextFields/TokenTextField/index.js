@@ -1,15 +1,12 @@
 import React, { memo } from 'react';
 import {
   OutlinedInput,
-  Select,
-  MenuItem,
   Button,
-  Typography
+  Typography,
+  Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx'
-
-import PolkaTokenIcon from 'components/PolkaTokenIcon'
 
 const useStyles = makeStyles(theme => {
   return {
@@ -18,12 +15,9 @@ const useStyles = makeStyles(theme => {
       justifyContent: 'space-between',
       alignItems: 'center',
       width: '100%',
-      padding: theme.spacing(3, 2.5),
-      borderRadius: 5,
-      border: `1px solid ${theme.custom.palette.border}`,
-      [theme.breakpoints.down('xs')]: {
-        padding: theme.spacing(1, 1.5),
-      }
+      padding: theme.spacing(1, 3),
+      borderRadius: 100,
+      border: `1px solid ${theme.palette.primary.main}`,
     },
     errorInput: {
       border: `1px solid ${theme.palette.danger.main}`
@@ -31,46 +25,32 @@ const useStyles = makeStyles(theme => {
     control: {
       display: 'flex',
       alignItems: 'center',
-      marginRight: theme.spacing(1)
+      marginLeft: theme.spacing(1)
     },
-    tokenIcon: {
-      marginRight: theme.spacing(1),
-      [theme.breakpoints.down('xs')]: {
-        width: 40,
-        height: 40,
-      }
-    },
-    select: {
-      fontSize: 26,
+    token: {
+      fontSize: 18,
       fontWeight: 'bold',
-      marginRight: theme.spacing(1),
-      '&::before': {
-        borderBottom: 0
-      },
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 18,
-      }
-    },
-    selectInput: {
-      paddingTop: 0,
-      paddingBottom: 0
     },
     maxButton: {
-      fontSize: 12,
-      fontWeight: 'bold',
+      fontSize: 14,
       minWidth: 'unset',
-      padding: theme.spacing(0, 1),
-      backgroundColor: theme.custom.palette.lightBlue
+      color: theme.palette.primary.main
+    },
+    divider: {
+      height: 20,
+      width: 1,
+      margin: theme.spacing(0, 2),
+      backgroundColor: theme.custom.palette.border
     },
     textField: {
       border: 'none',
     },
     input: {
-      fontSize: 26,
+      fontSize: 15,
       fontWeight: 'bold',
-      textAlign: 'right',
       padding: theme.spacing(0),
-      color: theme.palette.text.primary,
+      color: theme.palette.text.secondary,
+      backgroundColor: theme.palette.background.default,
       '&[type=number]': {
         '&::-webkit-outer-spin-button': {
           WebkitAppearance: 'none',
@@ -83,14 +63,11 @@ const useStyles = makeStyles(theme => {
         MozAppearance: 'textfield'
       },
       [theme.breakpoints.down('xs')]: {
-        fontSize: 18,
+        fontSize: 15,
       }
     },
     notchedOutline: {
       border: 'none'
-    },
-    balance: {
-      fontSize: 12
     },
     error: {
       fontSize: 12
@@ -99,73 +76,16 @@ const useStyles = makeStyles(theme => {
 });
 
 const TokenTextField = React.forwardRef(({
-  label,
-  isTokenSelect = false,
-  disabledMax = false,
-  disabledToken,
   token,
-  setToken,
-  tokens,
-  balance = 0,
   error,
   onChange,
+  onMax,
   ...rest
 }, ref) => {
   const classes = useStyles();
 
-  const maxHandler = () => {
-    onChange(balance)
-  }
-
-  const selectHandler = (event) => {
-    setToken(event.target.value)
-  }
-
   return (
     <div className={clsx(classes.root, { [classes.errorInput]: !!error })}>
-      <div className={classes.control}>
-        <PolkaTokenIcon token={token.name} className={classes.tokenIcon} />
-        <div>
-          <Typography variant='caption'>
-            {label}
-          </Typography>
-          {isTokenSelect
-            ? (
-              <Select
-                displayEmpty
-                inputProps={{ 'aria-label': 'available tokens' }}
-                value={token}
-                onChange={selectHandler}
-                className={classes.select}
-                classes={{
-                  select: classes.selectInput
-                }}
-              >
-                {tokens.map((token, index) => {
-                  return (
-                    <MenuItem
-                      key={index}
-                      value={token}
-                      disabled={disabledToken.name === token.name}
-                    >
-                      {token.name}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            ) : (
-              <Typography className={classes.select}>
-                {token.name}
-              </Typography>
-            )
-          }
-        </div>
-        {!disabledMax &&
-          <Button className={classes.maxButton} onClick={maxHandler} >
-            MAX
-          </Button>
-        }
-      </div>
       <div>
         <OutlinedInput
           inputRef={ref}
@@ -184,17 +104,24 @@ const TokenTextField = React.forwardRef(({
           onChange={onChange}
           {...rest}
         />
-        <Typography align='right' className={classes.balance}>
-          {`Balance: ${balance}`}
-        </Typography>
         {!!error &&
           <Typography
-            align='right'
             color='error'
             className={classes.error}
           >
             {error}
           </Typography>
+        }
+      </div>
+      <div className={classes.control}>
+        <Typography color='textSecondary' className={classes.token}>
+          {token}
+        </Typography>
+        <Divider orientation='vertical' className={classes.divider} />
+        {!onMax &&
+          <Button className={classes.maxButton} onClick={onMax} >
+            MAX
+          </Button>
         }
       </div>
     </div>

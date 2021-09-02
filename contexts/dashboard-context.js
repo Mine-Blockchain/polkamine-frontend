@@ -29,7 +29,7 @@ const initTokens = [
     saleSupply: 199681.55,
     totalSupply: 1100000000,
     totalSupplyLink: 'https://www.mine.network',
-    description: 'Each token represents 1MH/s BTC standardized hashrate'
+    description: 'Each token represents 1MH/s ETH standardized hashrate'
   }
 ]
 

@@ -50,7 +50,7 @@ const FooterContact = () => {
       <Divider className={classes.borderLine} />
       <Typography className={classes.copyright}>
         <span>Copyright</span> 
-        <span>2021 The Miine Network</span> 
+        <span>2021 The Mine Network</span> 
         <span>All Rights Reserved</span> 
       </Typography>
     </div>
