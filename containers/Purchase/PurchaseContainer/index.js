@@ -3,6 +3,7 @@ import { memo } from 'react'
 import { Grid } from '@material-ui/core'
 
 import TokenInfo from './TokenInfo'
+import TokenPurchase from './TokenPurchase'
 import TokenDescription from './TokenDescription'
 import MinerParameters from './MinerParameters'
 import MiningParameters from './MiningParameters'
@@ -16,6 +17,9 @@ const PurchaseContainer = ({
     <Grid container spacing={5}>
       <Grid item xs={12}>
         <TokenInfo selectedTab={selectedTab} />
+      </Grid>
+      <Grid item xs={12}>
+        <TokenPurchase selectedTab={selectedTab} />
       </Grid>
       <Grid item xs={12}>
         <TokenDescription selectedTab={selectedTab} />

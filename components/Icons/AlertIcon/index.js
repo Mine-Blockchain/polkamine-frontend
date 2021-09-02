@@ -19,10 +19,12 @@ const AlertIcon = ({
   const classes = useStyles();
 
   return (
-    <SvgIcon viewBox={viewBox || '0 0 14 14'} {...rest} className={clsx(classes.root, className)}>
-        <path d="M6.86993 12.89C10.1395 12.89 12.7899 10.2395 12.7899 6.96999C12.7899 3.70046 10.1395 1.04999 6.86993 1.04999C3.60041 1.04999 0.949951 3.70046 0.949951 6.96999C0.949951 10.2395 3.60041 12.89 6.86993 12.89Z" stroke="#00D5CF" strokeMiterlimit="10" />
-        <path d="M6.87012 6.96997V10.3" stroke="#00D5CF" strokeMiterlimit="10" />
-        <path d="M6.87012 4.23999V5.78999" stroke="#00D5CF" strokeMiterlimit="10" />
+    <SvgIcon viewBox={viewBox || '0 0 12.84 12.84'} {...rest} className={clsx(classes.root, className)}>
+      <g id="图层_4" data-name="图层 4">
+        <path fill='#00d5cf' d="M6.42,12.84a6.42,6.42,0,1,1,6.42-6.42A6.43,6.43,0,0,1,6.42,12.84ZM6.42,1a5.42,5.42,0,1,0,5.42,5.42A5.42,5.42,0,0,0,6.42,1Z" />
+        <rect fill='#00d5cf' x="5.92" y="6.42" width="1" height="3.33" />
+        <rect fill='#00d5cf' x="5.92" y="3.69" width="1" height="1.55" />
+      </g>
     </SvgIcon>
   )
 }
