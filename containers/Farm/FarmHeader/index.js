@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const HomeHeader = () => {
+const FarmHeader = () => {
   const classes = useStyles()
 
   return (
@@ -46,4 +46,4 @@ const HomeHeader = () => {
   )
 }
 
-export default memo(HomeHeader)
+export default memo(FarmHeader)

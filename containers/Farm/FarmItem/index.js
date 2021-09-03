@@ -1,11 +1,13 @@
 
 import { memo } from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 
 import PolkaTokenIcon from 'components/PolkaTokenIcon'
 import ExternalLinkIcon from 'components/Icons/ExternalLinkIcon'
 import ContainedButton from 'components/UI/Buttons/ContainedButton'
+import LINKS from 'utils/constants/links'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.custom.palette.border}`,
     borderRadius: 30,
     backgroundColor: theme.palette.background.secondary,
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(3),
-    },
   },
   rowContainer: {
     display: 'flex',
@@ -73,6 +72,14 @@ const FarmItem = ({
   farm
 }) => {
   const classes = useStyles()
+  const router = useRouter()
+
+  const detailHandler = () => {
+    router.push(
+      LINKS.FARM_DETAIL.HREF,
+      LINKS.FARM_DETAIL.HREF.replace('[token]', farm.tokenName)
+    )
+  }
 
   return (
     <div className={classes.root}>
@@ -124,7 +131,7 @@ const FarmItem = ({
           </Typography>
         </div>
       </div>
-      <ContainedButton className={classes.button}>
+      <ContainedButton className={classes.button} onClick={detailHandler}>
         Select
       </ContainedButton>
     </div>

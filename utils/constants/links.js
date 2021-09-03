@@ -11,6 +11,10 @@ const LINKS = Object.freeze({
     TITLE: 'Farming',
     HREF: '/farm'
   },
+  FARM_DETAIL: {
+    TITLE: 'FARM Detail',
+    HREF: '/farm/[token]'
+  },
 });
 
 export default LINKS;
