@@ -114,9 +114,11 @@ const TokenTextField = React.forwardRef(({
         }
       </div>
       <div className={classes.control}>
-        <Typography color='textSecondary' className={classes.token}>
-          {token}
-        </Typography>
+        {token &&
+          <Typography color='textSecondary' className={classes.token}>
+            {token}
+          </Typography>
+        }
         <Divider orientation='vertical' className={classes.divider} />
         {!onMax &&
           <Button className={classes.maxButton} onClick={onMax} >

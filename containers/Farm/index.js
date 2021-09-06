@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: theme.spacing(5, 0),
+    margin: theme.spacing(5, 0, 10),
+    maxWidth: 978, 
   }
 }));
 
@@ -33,7 +34,7 @@ const Farm = () => {
   return (
     <main className={classes.root}>
       <div className={clsx(commonClasses.containerWidth, classes.container)}>
-        <Grid container spacing={5}>
+        <Grid container spacing={4}>
           <Grid item xs={12}>
             <FarmHeader />
           </Grid>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     width: 120,
-    margin: theme.spacing(2, 0),
+    marginTop: theme.spacing(2),
   }
 }));
 

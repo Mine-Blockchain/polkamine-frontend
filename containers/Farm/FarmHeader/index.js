@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     width: 95,
-    height: 119
+    height: 119,
+    cursor: 'pointer'
   }
 }));
 
