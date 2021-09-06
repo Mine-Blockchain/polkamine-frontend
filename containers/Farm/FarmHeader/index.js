@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     fontWeight: 'bold',
     color: theme.palette.danger.main,
-    margin: theme.spacing(1.5, 0)
+    margin: theme.spacing(1, 0)
   },
   description: {
     fontWeight: 'bold',
@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     width: 95,
-    height: 119
+    height: 119,
+    cursor: 'pointer'
   }
 }));
 

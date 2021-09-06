@@ -15,9 +15,8 @@ import ContainedButton from 'components/UI/Buttons/ContainedButton'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    minWidth: 520,
+    minWidth: 460,
     borderRadius: 10,
-    backgroundColor: theme.palette.background.primary,
     [theme.breakpoints.down('sm')]: {
       minWidth: 'unset'
     },
@@ -27,15 +26,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     height: 68,
     lineHeight: 'initial',
-    padding: theme.spacing(2),
+    padding: theme.spacing(3, 3, 0),
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: theme.palette.text.secondary
   },
   closeIcon: {
     position: 'absolute',
-    color: theme.palette.text.primary,
+    color: theme.palette.text.secondary,
     top: theme.spacing(1),
     right: theme.spacing(2)
   },
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minWidth: '100%',
     minHeight: 90,
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     [theme.breakpoints.down('xs')]: {
       minWidth: 'unset',
     }

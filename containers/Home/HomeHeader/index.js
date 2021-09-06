@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     fontWeight: 'bold',
-    marginBottom: theme.spacing(1)
   }
 }));
 
@@ -21,7 +20,7 @@ const HomeHeader = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant='h4' className={classes.header} align='center'>
+      <Typography variant='h5' className={classes.header} align='center'>
         The First Multi-chain Hashrate Token Protocol
       </Typography>
       <Typography variant='body2' align='center'>

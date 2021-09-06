@@ -46,7 +46,8 @@ const NavDropMenu = () => {
 
   const itemHandler = useCallback((item) => () => {
     router.push(item.HREF)
-  }, [router]);
+    setAnchorEl(null);
+  }, [router, setAnchorEl]);
 
   return (
     <>

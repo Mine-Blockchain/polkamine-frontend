@@ -7,7 +7,7 @@ import PolkaTokenIcon from 'components/PolkaTokenIcon';
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
-    padding: theme.spacing(2, 2.5),
+    padding: theme.spacing(3, 3.5),
     border: `2px solid ${theme.custom.palette.border}`,
     borderRadius: 8
   },
@@ -16,17 +16,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between'
   },
   name: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold'
   },
   title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    paddingTop: theme.spacing(3)
+    fontSize: 24,
+    paddingTop: theme.spacing(2.5)
   },
   description: {
     fontSize: 14,
-    paddingTop: theme.spacing(0.5)
   },
   link: {
     fontSize: 14,
@@ -47,7 +45,7 @@ const TokenCard = ({
         </Typography>
         <PolkaTokenIcon
           token={token.tokenName}
-          size={65}
+          size={60}
         />
       </div>
 

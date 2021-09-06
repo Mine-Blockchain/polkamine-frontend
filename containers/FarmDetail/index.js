@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: theme.spacing(5, 0),
+    maxWidth: 840
   }
 }));
 
@@ -42,7 +43,7 @@ const FarmDetail = () => {
         {!isEmpty(farm) &&
           <>
             <FarmDetailHeader farm={farm} />
-            <Grid container spacing={3}>
+            <Grid container spacing={1}>
               <Grid item xs={12} md={6}>
                 <FarmStake farm={farm} />
               </Grid>

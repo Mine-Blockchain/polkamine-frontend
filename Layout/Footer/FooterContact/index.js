@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(to right, ${theme.custom.palette.pink}, ${theme.custom.palette.yellow})`
   },
   copyright: {
-    fontSize: 12,
-    marginTop: theme.spacing(1.5),
-    color: theme.palette.background.default,
+    fontSize: 10,
     textDecoration: 'unset',
+    marginTop: theme.spacing(1),
+    color: theme.palette.background.default,
     '& span': {
       paddingRight: theme.spacing(2)
     }

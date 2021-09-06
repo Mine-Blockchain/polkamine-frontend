@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     position: 'absolute',
     top: 0,
-    left: 0
+    left: 0,
+    cursor: 'pointer'
   },
   name: {
     fontSize: 15,

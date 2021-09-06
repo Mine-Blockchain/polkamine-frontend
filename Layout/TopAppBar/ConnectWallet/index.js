@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
-    fontSize: '14px',
+    fontSize: 14,
+    marginLeft: theme.spacing(1)
   }
 }));
 

@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.custom.palette.border,
     '& span': {
       fontSize: 18,
-      fontWeight: 'bold',
       color: theme.palette.text.secondary
     }
   }

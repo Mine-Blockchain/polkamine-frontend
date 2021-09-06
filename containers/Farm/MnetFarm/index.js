@@ -116,7 +116,7 @@ const MnetFarm = () => {
           </Typography>
           <Typography color='textSecondary' className={classes.name}>
             0.00000000 WBTC
-            <br /><br />
+            <br />
             0.000000000 ETH <AlertIcon />
           </Typography>
         </div>

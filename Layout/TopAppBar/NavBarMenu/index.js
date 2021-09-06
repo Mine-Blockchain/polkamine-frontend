@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     fontSize: 14,
-    fontWeight: 'bold',
     textTransform: 'none',
     paddingRight: theme.spacing(5),
     color: theme.palette.text.primary

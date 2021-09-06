@@ -1,7 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
 const fontFamily = [
-  'Arial',
+  'ArialNew',
   'Rubik',
   '-apple-system',
   'BlinkMacSystemFont',
@@ -22,7 +22,7 @@ const theme = responsiveFontSizes(
         '@global': {
           '@font-face': [
             {
-              fontFamily: 'Arial',
+              fontFamily: 'ArialNew',
               fontStyle: 'normal',
               fontDisplay: 'swap',
               fontWeight: 400,
@@ -44,11 +44,11 @@ const theme = responsiveFontSizes(
         main: '#00d5cf',
       },
       secondary: {
-        main: '#fe03b1',
+        main: '#d83089',
         contrastText: '#ffffff',
       },
       danger: {
-        main: '#fe03b1',
+        main: '#d83089',
       },
       background: {
         default: '#FFFFFF',
@@ -67,14 +67,14 @@ const theme = responsiveFontSizes(
         blue: '#29316c',
         darkBlue: '#2b2e3f',
         green: '#28C76F',
-        pink: '#fe03b1',
+        pink: '#d83089',
         yellow: '#ffb418',
         border: '#999999'
       },
       layout: {
-        topAppBarHeight: 64,
-        maxFooterWidth: 520,
-        maxDeskWidth: 1440
+        topAppBarHeight: 70,
+        maxFooterWidth: 550,
+        maxDeskWidth: 1294
       }
     },
   })
