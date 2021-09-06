@@ -8,7 +8,6 @@ import AlertIcon from 'components/Icons/AlertIcon'
 const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
     color: theme.palette.text.secondary,
     marginBottom: theme.spacing(1)
   },
@@ -41,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
   },
   value: {
     fontSize: 14,
-    fontWeight: 'bold',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'left',

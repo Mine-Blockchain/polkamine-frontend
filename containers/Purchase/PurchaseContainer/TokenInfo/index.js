@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   colDivider: {
-    height: 40,
+    height: 50,
     width: 1,
-    margin: theme.spacing(0, 2),
+    margin: theme.spacing(0, 3),
     backgroundColor: theme.custom.palette.border
   },
   price: {
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.custom.palette.border,
     '& span': {
       fontSize: 24,
-      fontWeight: 'bold',
       color: theme.palette.text.secondary,
     }
   },

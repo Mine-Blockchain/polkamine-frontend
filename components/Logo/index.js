@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: 'unset'
   },
   img: {
-    height: 40,
+    height: 47,
     objectFit: 'contain',
   },
 }));

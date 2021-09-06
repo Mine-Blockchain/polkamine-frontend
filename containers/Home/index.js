@@ -167,7 +167,7 @@ const Home = () => {
     <main id='container' className={classes.root}>
       <div className={clsx(commonClasses.containerWidth, classes.container)}>
         <HomeHeader />
-        <Grid container spacing={6} className={classes.tokenContainer}>
+        <Grid container spacing={8} className={classes.tokenContainer}>
           {tokens.map((token) =>
             <Grid key={token.tokenName} item xs={12} sm={6} md={4}>
               <TokenCard token={token} />

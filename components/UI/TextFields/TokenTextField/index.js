@@ -46,8 +46,7 @@ const useStyles = makeStyles(theme => {
       border: 'none',
     },
     input: {
-      fontSize: 15,
-      fontWeight: 'bold',
+      fontSize: 14,
       padding: theme.spacing(0),
       color: theme.palette.text.secondary,
       backgroundColor: theme.palette.background.default,
@@ -61,9 +60,6 @@ const useStyles = makeStyles(theme => {
           margin: 0
         },
         MozAppearance: 'textfield'
-      },
-      [theme.breakpoints.down('xs')]: {
-        fontSize: 15,
       }
     },
     notchedOutline: {

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     fontWeight: 'bold',
     color: theme.palette.danger.main,
-    margin: theme.spacing(1.5, 0)
+    margin: theme.spacing(1, 0)
   },
   description: {
     fontWeight: 'bold',

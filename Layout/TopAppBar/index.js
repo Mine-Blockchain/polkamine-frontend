@@ -29,9 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
   mnetBalance: {
     fontSize: 14,
-    fontWeight: 'bold',
     borderRadius: 50,
-    padding: theme.spacing(1, 2),
+    padding: theme.spacing(1),
     marginRight: theme.spacing(2),
     backgroundColor: theme.palette.primary.main
   }
