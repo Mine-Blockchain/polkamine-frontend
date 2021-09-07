@@ -16,14 +16,14 @@ const useStyles = makeStyles(() => ({
 const PolkaTokenIcon = ({
   token,
   size = 50,
-  className,
+  className
 }) => {
-  const classes = useStyles({ size });
+  const classes = useStyles({ size })
 
   return (
     <img
       alt='token-icon'
-      src={LP_ICONS[token || "SNOB"]}
+      src={LP_ICONS[token || 'NoIcon']}
       className={clsx(classes.tokenImage, className)}
     />
   )

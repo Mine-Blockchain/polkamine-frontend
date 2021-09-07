@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useWeb3React } from '@web3-react/core';
+import { useState, useEffect } from 'react'
+import { useWeb3React } from '@web3-react/core'
 
 import { injected } from 'utils/constants/connectors'
 
@@ -18,9 +18,8 @@ const useEagerConnect = () => {
           setTried(true);
         }
       });
-  }, [activate]); // intentionally only running on mount (make sure it's only mounted once :))
+  }, [activate]);
 
-  // if the connection worked, wait until we get confirmation of that to flip the flag
   useEffect(() => {
     if (!tried && active) {
       setTried(true);

@@ -37,11 +37,20 @@ const FarmHeader = () => {
         src={POOL_ICON_IMAGE_PATH}
         className={classes.icon}
       />
-      <Typography variant='h4' className={classes.header} align='center'>
+      <Typography
+        variant='h4'
+        align='center'
+        className={classes.header}
+      >
         Select a pool
       </Typography>
-      <Typography variant='body2' align='center' className={classes.description}>
-        Stake hashrate certificate and governance token MNET to earn either WBTC or ETH and MNET.
+      <Typography
+        variant='body2'
+        align='center'
+        className={classes.description}
+      >
+        Stake hashrate certificate and governance token
+        MNET to earn either WBTC or ETH and MNET.
       </Typography>
     </div >
   )

@@ -2,10 +2,13 @@
 import { memo } from 'react'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 
 import LINKS from 'utils/constants/links'
-import { LOGO_IMAGE_PATH, LOGO_LABEL_IMAGE_PATH } from 'utils/constants/image-paths'
-import clsx from 'clsx'
+import { 
+  LOGO_IMAGE_PATH, 
+  LOGO_LABEL_IMAGE_PATH 
+} from 'utils/constants/image-paths'
 
 const useStyles = makeStyles(() => ({
   picture: {
@@ -27,8 +30,7 @@ const Logo = ({
   className,
   ...rest
 }) => {
-  const classes = useStyles();
-
+  const classes = useStyles()
   const imagePath = isLabel ? LOGO_LABEL_IMAGE_PATH : LOGO_IMAGE_PATH
 
   return (

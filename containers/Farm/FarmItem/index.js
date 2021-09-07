@@ -89,7 +89,11 @@ const FarmItem = ({
             token={farm.tokenName}
             size={65}
           />
-          <Typography color='textSecondary' className={classes.name} align='center'>
+          <Typography
+            align='center'
+            color='textSecondary'
+            className={classes.name}
+          >
             {farm.tokenName}
           </Typography>
         </div>
@@ -99,7 +103,11 @@ const FarmItem = ({
             token='MNET'
             size={14}
           />
-          <Typography color='primary' variant='h5' align='center'>
+          <Typography
+            variant='h5'
+            color='primary'
+            align='center'
+          >
             {farm.boost}X
           </Typography>
         </div>
