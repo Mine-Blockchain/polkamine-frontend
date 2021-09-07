@@ -64,7 +64,11 @@ const FarmDetailHeader = ({
         token={farm.tokenName}
         size={75}
       />
-      <Typography color='textSecondary' className={classes.name} align='center'>
+      <Typography
+        align='center'
+        color='textSecondary'
+        className={classes.name}
+      >
         {farm.tokenName}
       </Typography>
       <Typography className={classes.description} align='center'>

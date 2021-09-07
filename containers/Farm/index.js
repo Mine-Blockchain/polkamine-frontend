@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: theme.spacing(5, 0, 10),
-    maxWidth: 978, 
+    maxWidth: 978,
   }
 }));
 

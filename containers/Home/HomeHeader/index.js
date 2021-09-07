@@ -20,10 +20,17 @@ const HomeHeader = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant='h5' className={classes.header} align='center'>
+      <Typography
+        variant='h5'
+        align='center'
+        className={classes.header}
+      >
         The First Multi-chain Hashrate Token Protocol
       </Typography>
-      <Typography variant='body2' align='center'>
+      <Typography
+        variant='body2'
+        align='center'
+      >
         Purchase and stake hashrate certificates to earn
         mining yields and MNET rewards
       </Typography>

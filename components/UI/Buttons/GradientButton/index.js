@@ -24,7 +24,8 @@ const GradientButton = React.forwardRef(({
     <ContainedButton
       ref={ref}
       className={clsx(className, classes[color])}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </ContainedButton>
   );

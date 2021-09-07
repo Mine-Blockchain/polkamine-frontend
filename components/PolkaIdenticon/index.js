@@ -16,7 +16,7 @@ const PolkaIdenticon = React.forwardRef(({
   size = 32,
   className
 }, ref) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Identicon

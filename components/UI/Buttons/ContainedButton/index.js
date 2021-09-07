@@ -17,12 +17,12 @@ const useStyles = makeStyles(theme => ({
     }
   },
   wrapper: {
-    position: 'relative',
+    position: 'relative'
   },
   disabled: {
     opacity: 0.6,
     backgroundColor: `${theme.custom.palette.lightGrey} !important`,
-    color: `${theme.custom.palette.darkGrey} !important`,
+    color: `${theme.custom.palette.darkGrey} !important`
   }
 }));
 

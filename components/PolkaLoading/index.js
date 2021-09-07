@@ -21,13 +21,14 @@ const PolkaLoading = ({
   height,
   size = 100
 }) => {
-  const classes = useStyles({ height });
+  const classes = useStyles({ height })
 
   return (
     <div className={classes.root}>
       <LoadingSpinner
         loading={loading}
-        size={size} />
+        size={size}
+      />
     </div>
   );
 };
