@@ -2,9 +2,9 @@ import { createContext, useContext, useMemo, useEffect, useState, useCallback } 
 import { ethers } from 'ethers'
 import { useWeb3React } from '@web3-react/core'
 
-import { CONTRACTS, C_CHAIN_ID } from 'config'
+import { CONTRACTS, CHAIN_ID } from 'config'
 import { usePopup } from 'contexts/popup-context'
-import ERC20_ABI from 'libs/abis/erc20.json'
+import MNET_ABI from 'libs/abis/mnet.json'
 import { isEmpty } from 'utils/helpers/utility'
 
 const ContractContext = createContext(null)
@@ -15,11 +15,11 @@ export function ContractProvider({ children }) {
 
   const [balances, setBalances] = useState({});
 
-  const isWrongNetwork = useMemo(() => chainId !== C_CHAIN_ID, [chainId])
-  const mnetContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.MNET, ERC20_ABI, library.getSigner()) : null, [library])
+  const isWrongNetwork = useMemo(() => chainId !== CHAIN_ID, [chainId])
+  const mnetContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.MNET, MNET_ABI, library.getSigner()) : null, [library])
 
   useEffect(() => {
-    if (library && chainId !== C_CHAIN_ID) {
+    if (library && chainId !== CHAIN_ID) {
       setPopUp({
         title: 'Network Error',
         text: `Switch to Polka Chain`
@@ -32,19 +32,23 @@ export function ContractProvider({ children }) {
   const getBalanceInfo = useCallback(async () => {
     try {
       const [
+        ethBalance,
         mnetBalance
       ] = await Promise.all([
+        library.getBalance(account),
         mnetContract['balanceOf(address)'](account)
       ]);
+      const ethBalanceValue = ethers.utils.formatUnits(ethBalance)
       const mnetBalanceValue = ethers.utils.formatUnits(mnetBalance, 18)
 
       setBalances({
+        eth: ethBalanceValue,
         mnet: mnetBalanceValue
       });
     } catch (error) {
       console.log('[Error] getBalanceInfo => ', error)
     }
-  }, [account, mnetContract])
+  }, [account, mnetContract, library])
 
   useEffect(() => {
     if (!isEmpty(mnetContract)) {
