@@ -15,14 +15,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TokenDescription = ({
-  selectedTab
+  purchase
 }) => {
   const classes = useStyles()
 
   return (
     <Typography className={classes.price}>
       <span>Description</span><br />
-      Each {selectedTab.VALUE} represents 1MH/s 1.8W/M ETH mining power
+      {purchase.description}
     </Typography>
   )
 }

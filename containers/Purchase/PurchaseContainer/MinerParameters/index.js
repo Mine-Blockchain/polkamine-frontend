@@ -54,7 +54,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MinerParameters = () => {
+const MinerParameters = ({
+  purchase
+}) => {
   const classes = useStyles()
 
   return (
@@ -92,22 +94,22 @@ const MinerParameters = () => {
         <Grid container spacing={3} className={classes.rowContainer}>
           <Grid item xs={12} md={3}>
             <Typography className={classes.value} color='textSecondary'>
-              1.8W/T
+              {purchase.miner.efficiency}W/T
             </Typography>
           </Grid>
           <Grid item xs={12} md={3}>
             <Typography className={classes.value} color='textSecondary'>
-              0.0%
+              {purchase.miner.dissipationRate}%
             </Typography>
           </Grid>
           <Grid item xs={12} md={3}>
             <Typography className={classes.value} color='textSecondary'>
-              0.0%
+              {purchase.miner.onlineRate}%
             </Typography>
           </Grid>
           <Grid item xs={12} md={3}>
             <Typography className={classes.value} color='primary'>
-              0.000000000 BTC/Day
+              {`${purchase.miner.netEarnings} ${purchase.baseToken}/Day`}
             </Typography>
           </Grid>
         </Grid>

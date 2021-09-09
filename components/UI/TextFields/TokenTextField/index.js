@@ -116,7 +116,7 @@ const TokenTextField = React.forwardRef(({
           </Typography>
         }
         <Divider orientation='vertical' className={classes.divider} />
-        {!onMax &&
+        {onMax &&
           <Button className={classes.maxButton} onClick={onMax} >
             MAX
           </Button>

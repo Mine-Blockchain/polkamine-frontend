@@ -17,15 +17,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const TokenAlert = () => {
+const TokenAlert = ({
+  purchase
+}) => {
   const classes = useStyles()
 
-  return (
-    <Typography className={classes.alert}>
+  return purchase.alerts.map((alert, index) => (
+    <Typography key={index} className={classes.alert}>
       <GradientCircleIcon className={classes.icon} />
-      Aboved data will be renewed daily, please refer to the actual data for the final settlement.
+      {alert}
     </Typography>
-  )
+  ))
 }
 
 export default memo(TokenAlert)

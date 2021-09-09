@@ -6,9 +6,10 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
+import { usePurchases } from 'contexts/purchase-context'
 import TokenTextField from 'components/UI/TextFields/TokenTextField'
+import ContainedButton from 'components/UI/Buttons/ContainedButton'
 import { BALANCE_VALID } from 'utils/constants/validations'
-import ContainedButton from 'components/UI/Buttons/ContainedButton';
 
 const schema = yup.object().shape({
   balance: BALANCE_VALID
@@ -45,17 +46,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TokenPurchase = ({
-  selectedTab
+  purchase
 }) => {
   const classes = useStyles()
+  const { usdtBalance, onPurchase } = usePurchases()
 
-  const { control, handleSubmit, errors, setValue } = useForm({
+  const { control, handleSubmit, errors, setValue, watch } = useForm({
     resolver: yupResolver(schema)
   });
+  const balance = watch('balance');
 
   const onSubmit = async (data) => {
-    console.log(data)
+    await onPurchase(data.balance, purchase)
     setValue('balance', '')
+  }
+
+  const maxHandler = () => {
+    const maxValue = purchase.tokenPrice ? usdtBalance / purchase.tokenPrice : 0
+    setValue('balance', maxValue)
   }
 
   return (
@@ -66,19 +74,20 @@ const TokenPurchase = ({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Typography align='right' className={classes.label}>
-          USDT Balance: <span>0.0</span>
+          USDT Balance: <span>{usdtBalance}</span>
         </Typography>
         <Controller
           as={<TokenTextField />}
           name='balance'
           placeholder='Enter purchase amount'
-          token={selectedTab.VALUE}
+          token={purchase.value}
+          onMax={maxHandler}
           error={errors.balance?.message}
           control={control}
           defaultValue={''}
         />
         <Typography align='left' className={classes.label}>
-          Volume: <span>0.0</span> USDT
+          Volume: <span>{(balance || 0) * purchase.tokenPrice}</span> USDT
         </Typography>
         <ContainedButton type='submit' className={classes.submit}>
           Purchase

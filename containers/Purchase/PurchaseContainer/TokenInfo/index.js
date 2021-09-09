@@ -3,6 +3,7 @@ import { memo } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Divider, Grid, Typography } from '@material-ui/core';
 
+import { ETHERSCAN_URL } from 'config'
 import ExternalLinkIcon from 'components/Icons/ExternalLinkIcon'
 import OutlinedButton from 'components/UI/Buttons/OutlinedButton'
 import PurchaseTokenItem from 'containers/Purchase/Shared/PurchaseTokenItem'
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TokenInfo = ({
-  selectedTab
+  purchase
 }) => {
   const classes = useStyles()
 
@@ -55,35 +56,41 @@ const TokenInfo = ({
     <div className={classes.root}>
       <div className={classes.rowContainer}>
         <div className={classes.tokenInfo}>
-          <PurchaseTokenItem token={selectedTab} />
+          <PurchaseTokenItem token={purchase} />
           <Divider orientation='vertical' className={classes.colDivider} />
           <Typography className={classes.price}>
             Price<br />
-            <span>160.0</span>USDT
+            <span>{parseFloat(purchase.tokenPrice).toFixed(2).toLocaleString()}</span>USDT
           </Typography>
         </div>
-        <OutlinedButton endIcon={<ExternalLinkIcon />}>
+        <OutlinedButton
+          href={`${ETHERSCAN_URL}/address/${purchase.token}`}
+          endIcon={<ExternalLinkIcon />}
+          target='_blank'
+        >
           View contract
         </OutlinedButton>
       </div>
+
       <Divider className={classes.rowDivider} />
+
       <Grid container spacing={3} className={classes.rowContainer}>
         <Grid item xs={12} md={4}>
           <Typography className={classes.price}>
             Supply<br />
-            <span>120,000,000.0</span>
+            <span>{purchase.tokenSupply.toLocaleString()}</span>
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Typography className={classes.price}>
             Sold<br />
-            <span>100,000,318.4</span>
+            <span>{purchase.sold.toLocaleString()}</span>
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Typography className={classes.price}>
             Available<br />
-            <span>199,876.4</span>
+            <span>{purchase.available.toLocaleString()}</span>
           </Typography>
         </Grid>
       </Grid>
