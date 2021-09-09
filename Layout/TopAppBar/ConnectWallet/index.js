@@ -56,7 +56,7 @@ const ConnectWallet = () => {
         color='textPrimary'
         className={classes.balance}
       >
-        {parseFloat(balances.eth).toFixed(2).toLocaleString()} ETH
+        {parseFloat(balances?.eth || 0).toFixed(2).toLocaleString()} ETH
       </Typography>
       {(active || error)
         ? (
