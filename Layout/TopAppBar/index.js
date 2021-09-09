@@ -2,6 +2,7 @@ import { memo } from 'react'
 import { AppBar, Toolbar, Typography, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { useContracts } from 'contexts/contract-context'
 import Logo from 'components/Logo'
 import NavBarMenu from './NavBarMenu'
 import NavDropMenu from './NavDropMenu'
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TopAppBar = () => {
   const classes = useStyles();
+  const { balances } = useContracts();
 
   return (
     <AppBar
@@ -51,7 +53,7 @@ const TopAppBar = () => {
 
           <Hidden xsDown>
             <Typography className={classes.mnetBalance}>
-              0 MNET
+            {parseFloat(balances.mnet).toFixed(2).toLocaleString()} MNET
             </Typography>
           </Hidden>
 

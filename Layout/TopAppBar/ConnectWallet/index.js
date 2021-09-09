@@ -4,6 +4,7 @@ import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { useWallets } from 'contexts/wallet-context'
+import { useContracts } from 'contexts/contract-context'
 import PolkaIdenticon from 'components/PolkaIdenticon'
 import ContainedButton from 'components/UI/Buttons/ContainedButton'
 import getEllipsis from 'utils/helpers/getEllipsis'
@@ -38,6 +39,7 @@ const ConnectWallet = () => {
   const classes = useStyles()
   const { setIsWalletDialog } = useWallets()
   const { account, active, error, deactivate } = useWeb3React();
+  const { balances } = useContracts();
 
   const walletHandler = () => {
     if ((active || error)) {
@@ -54,7 +56,7 @@ const ConnectWallet = () => {
         color='textPrimary'
         className={classes.balance}
       >
-        0 ETH
+        {parseFloat(balances.eth).toFixed(2).toLocaleString()} ETH
       </Typography>
       {(active || error)
         ? (
