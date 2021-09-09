@@ -1,11 +1,11 @@
 const PURCHASE_TABS = Object.freeze({
   pBTC35A: {
-    LABEL: 'POW BTC-35W/T',
-    VALUE: 'pBTC35A'
+    label: 'POW BTC-35W/T',
+    value: 'pBTC35A'
   },
   pETH18C: {
-    LABEL: 'POW ETH-1.8W/M',
-    VALUE: 'pETH18C'
+    label: 'POW ETH-1.8W/M',
+    value: 'pETH18C'
   }
 })
 

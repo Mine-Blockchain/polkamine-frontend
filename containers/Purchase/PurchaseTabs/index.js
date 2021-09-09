@@ -29,12 +29,12 @@ const PurchaseTabs = ({
 
   return (PURCHASE_TABS_ARRAY.map((item) => (
     <div
-      key={item.VALUE}
+      key={item.value}
       className={classes.tabContainer}
       onClick={tabHandler(item)}
     >
       <PurchaseTokenItem token={item} />
-      <RightArrowIcon selected={item.VALUE === selectedTab.VALUE} />
+      <RightArrowIcon selected={item.value === selectedTab.value} />
     </div>
   )))
 }

@@ -10,7 +10,7 @@ const PolkaConfirmDialog = ({
 }) => {
   return (
     <PolkaDialog {...rest}>
-      <Typography color='textPrimary' variant='h5' align='center'>
+      <Typography color='textSecondary' variant='h5' align='center'>
         {text}
       </Typography>
     </PolkaDialog>

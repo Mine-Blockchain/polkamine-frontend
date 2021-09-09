@@ -29,12 +29,12 @@ const PurchaseTokenItem = ({
   return (
     <div className={classes.info}>
       <PolkaTokenIcon
-        token={token.VALUE}
+        token={token.value}
         size={35}
       />
       <Typography className={classes.label}>
-        <span>{token.VALUE}</span>
-        <br /> {token.LABEL}
+        <span>{token.value}</span>
+        <br /> {token.label}
       </Typography>
     </div>
   )

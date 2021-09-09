@@ -46,8 +46,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MiningParameters = () => {
+const MiningParameters = ({
+  purchase
+}) => {
   const classes = useStyles()
+  const { mining } = purchase;
+  const mdLength = mining.length === 2 ? 6 : 2;
 
   return (
     <>
@@ -56,29 +60,25 @@ const MiningParameters = () => {
       </Typography>
       <div className={classes.root}>
         <Grid container spacing={3} className={classes.rowContainer}>
-          <Grid item xs={12} md={6}>
-            <Typography className={classes.label}>
-              WAP Price(24H)
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography className={classes.label}>
-              Mining pool fee
-            </Typography>
-          </Grid>
+          {mining.map((item, index) => (
+            <Grid key={index} item xs={12} md={mdLength}>
+              <Typography className={classes.label}>
+                {item.key}
+              </Typography>
+            </Grid>
+          ))}
         </Grid>
+
         <Divider className={classes.rowDivider} />
+
         <Grid container spacing={3} className={classes.rowContainer}>
-          <Grid item xs={12} md={6}>
-            <Typography className={classes.value} color='textSecondary'>
-              $1981
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography className={classes.value} color='textSecondary'>
-              PPS+ 1.00%
-            </Typography>
-          </Grid>
+          {mining.map((item, index) => (
+            <Grid key={index} item xs={12} md={mdLength}>
+              <Typography className={classes.value} color='textSecondary'>
+                {item.value}
+              </Typography>
+            </Grid>
+          ))}
         </Grid>
       </div>
     </>

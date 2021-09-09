@@ -10,28 +10,28 @@ import MiningParameters from './MiningParameters'
 import TokenAlert from './TokenAlert'
 
 const PurchaseContainer = ({
-  selectedTab
+  purchase
 }) => {
 
   return (
     <Grid container spacing={5}>
       <Grid item xs={12}>
-        <TokenInfo selectedTab={selectedTab} />
+        <TokenInfo purchase={purchase} />
       </Grid>
       <Grid item xs={12}>
-        <TokenPurchase selectedTab={selectedTab} />
+        <TokenPurchase purchase={purchase} />
       </Grid>
       <Grid item xs={12}>
-        <TokenDescription selectedTab={selectedTab} />
+        <TokenDescription purchase={purchase} />
       </Grid>
       <Grid item xs={12}>
-        <MinerParameters selectedTab={selectedTab} />
+        <MinerParameters purchase={purchase} />
       </Grid>
       <Grid item xs={12}>
-        <MiningParameters selectedTab={selectedTab} />
+        <MiningParameters purchase={purchase} />
       </Grid>
       <Grid item xs={12}>
-        <TokenAlert selectedTab={selectedTab} />
+        <TokenAlert purchase={purchase} />
       </Grid>
     </Grid>
   )

@@ -53,7 +53,7 @@ const TopAppBar = () => {
 
           <Hidden xsDown>
             <Typography className={classes.mnetBalance}>
-            {parseFloat(balances.mnet).toFixed(2).toLocaleString()} MNET
+              {parseFloat(balances?.mnet || 0).toFixed(2).toLocaleString()} MNET
             </Typography>
           </Hidden>
 
