@@ -6,6 +6,8 @@ import { CONTRACTS, CHAIN_ID, IS_MAINNET, PROVIDER } from 'config'
 import { usePopup } from 'contexts/popup-context'
 import USDT_ABI from 'libs/abis/usdt.json'
 import TOKEN_SALE_ABI from 'libs/abis/token-sale.json'
+import P_BTC_ABI from 'libs/abis/p-btc.json'
+import P_ETH_ABI from 'libs/abis/p-eth.json'
 import { isEmpty } from 'utils/helpers/utility'
 import MESSAGES from 'utils/constants/messages'
 
@@ -18,8 +20,8 @@ const pBTC35A = {
   token: CONTRACTS.pBTC35A,
   tokenPrice: 0,
   tokenSupply: 0,
-  sold: 249673,
-  available: 85348,
+  sold: 0,
+  available: 0,
   description: 'Each pBTC35A represents 1MH/s 35W/M BTC mining power',
   miner: {
     efficiency: 1.8,
@@ -62,8 +64,8 @@ const pETH18C = {
   token: CONTRACTS.pETH18C,
   tokenPrice: 0,
   tokenSupply: 0,
-  sold: 249673,
-  available: 85348,
+  sold: 0,
+  available: 0,
   description: 'Each pETH18C represents 1MH/s 1.8W/M ETH mining power',
   miner: {
     efficiency: 1.8,
@@ -87,6 +89,8 @@ const pETH18C = {
 }
 
 const unsignedSaleContract = new ethers.Contract(CONTRACTS.TOKEN_SALE, TOKEN_SALE_ABI, PROVIDER)
+const unsignedPBTC35AContract = new ethers.Contract(CONTRACTS.pBTC35A, P_BTC_ABI, PROVIDER)
+const unsignedPETH18CContract = new ethers.Contract(CONTRACTS.pETH18C, P_ETH_ABI, PROVIDER)
 const ContractContext = createContext(null)
 
 export function PurchaseProvider({ children }) {
@@ -111,22 +115,30 @@ export function PurchaseProvider({ children }) {
         pBTCPrice,
         pETHPrice,
         pBTCSupply,
-        pETHSupply
+        pETHSupply,
+        pBTCSold,
+        pETHSold,
       ] = await Promise.all([
         unsignedSaleContract.tokenPrice(CONTRACTS.pBTC35A),
         unsignedSaleContract.tokenPrice(CONTRACTS.pETH18C),
         unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pBTC35A),
         unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pETH18C),
+        unsignedPBTC35AContract.totalSupply(),
+        unsignedPETH18CContract.totalSupply(),
       ]);
 
       const pBTCPriceValue = ethers.utils.formatUnits(pBTCPrice[1], 0)
       const pETHPriceValue = ethers.utils.formatUnits(pETHPrice[1], 0)
       const pBTCSupplyValue = ethers.utils.formatUnits(pBTCSupply)
       const pETHSupplyValue = ethers.utils.formatUnits(pETHSupply)
+      const pBTCSoldValue = ethers.utils.formatUnits(pBTCSold)
+      const pETHSoldValue = ethers.utils.formatUnits(pETHSold)
+      const pBTCAvailable = pBTCSupplyValue - pBTCSoldValue
+      const pETHAvailable = pETHSupplyValue - pETHSoldValue
 
       setPurchases([
-        { ...pBTC35A, tokenPrice: pBTCPriceValue, tokenSupply: pBTCSupplyValue },
-        { ...pETH18C, tokenPrice: pETHPriceValue, tokenSupply: pETHSupplyValue }
+        { ...pBTC35A, tokenPrice: pBTCPriceValue, tokenSupply: pBTCSupplyValue, sold: pBTCSoldValue, available: pBTCAvailable },
+        { ...pETH18C, tokenPrice: pETHPriceValue, tokenSupply: pETHSupplyValue, sold: pETHSoldValue, available: pETHAvailable }
       ])
     } catch (error) {
       console.log('[Error] getSupply => ', error)
