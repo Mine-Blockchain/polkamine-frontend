@@ -1,17 +1,17 @@
 const PURCHASE_TABS = Object.freeze({
-  pBTC35A: {
+  pBTCM: {
     label: 'POW BTC-35W/T',
-    value: 'pBTC35A'
+    value: 'pBTCM'
   },
-  pETH18C: {
+  pETHM: {
     label: 'POW ETH-1.8W/M',
-    value: 'pETH18C'
+    value: 'pETHM'
   }
 })
 
 const PURCHASE_TABS_ARRAY = [
-  PURCHASE_TABS.pBTC35A,
-  PURCHASE_TABS.pETH18C
+  PURCHASE_TABS.pBTCM,
+  PURCHASE_TABS.pETHM
 ]
 
 export {

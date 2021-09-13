@@ -35,7 +35,7 @@ const Purchase = () => {
   const commonClasses = useCommonStyles()
   const { loading, purchases } = usePurchases()
 
-  const [selectedTab, setSelectedTab] = useState(PURCHASE_TABS.pBTC35A)
+  const [selectedTab, setSelectedTab] = useState(PURCHASE_TABS.pBTCM)
 
   const selectedPurchase = useMemo(() =>
     purchases.find((purchase) => purchase.value === selectedTab.value)

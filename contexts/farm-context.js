@@ -18,9 +18,9 @@ const btcFarm = {
   tokenName: 'BTC',
   boost: 1,
   staticAPY: 0.8141,
-  stake: 'pBTC35A',
+  stake: 'pBTCM',
   stakeBalance: 0,
-  stakeAddress: CONTRACTS.pBTC35A,
+  stakeAddress: CONTRACTS.pBTCM,
   earn: 'WBTC',
   earnAddress: CONTRACTS.wBTC,
 }
@@ -30,9 +30,9 @@ const ethFarm = {
   tokenName: 'ETH',
   boost: 1,
   staticAPY: 0.0302,
-  stake: 'pETH18C',
+  stake: 'pETHM',
   stakeBalance: 0,
-  stakeAddress: CONTRACTS.pETH18C,
+  stakeAddress: CONTRACTS.pETHM,
   earn: 'ETH',
   earnAddress: CONTRACTS.wETH,
 }
@@ -45,33 +45,33 @@ export function FarmProvider({ children }) {
 
   const [loading, setLoading] = useState(false);
   const [farms, setFarms] = useState([btcFarm, ethFarm]);
-  const pBTC35AContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pBTC35A, P_BTC_ABI, library.getSigner()) : null, [library])
-  const pETH18CContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pETH18C, P_ETH_ABI, library.getSigner()) : null, [library])
+  const pBTCMContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pBTCM, P_BTC_ABI, library.getSigner()) : null, [library])
+  const pETHMContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pETHM, P_ETH_ABI, library.getSigner()) : null, [library])
   const poolManagerContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.POOL_MANAGER, POOL_MANAGER_ABI, library.getSigner()) : null, [library])
 
   const getUserInfo = useCallback(async () => {
     try {
       const [
-        pBTC35ABalance,
-        pETH18CBalance,
+        pBTCMBalance,
+        pETHMBalance,
       ] = await Promise.all([
-        pBTC35AContract['balanceOf(address)'](account),
-        pETH18CContract['balanceOf(address)'](account)
+        pBTCMContract['balanceOf(address)'](account),
+        pETHMContract['balanceOf(address)'](account)
       ]);
-      const pBTC35ABalanceValue = ethers.utils.formatUnits(pBTC35ABalance)
-      const pETH18CBalanceValue = ethers.utils.formatUnits(pETH18CBalance)
+      const pBTCMBalanceValue = ethers.utils.formatUnits(pBTCMBalance)
+      const pETHMBalanceValue = ethers.utils.formatUnits(pETHMBalance)
 
       setFarms([
-        { ...btcFarm, stakeBalance: pBTC35ABalanceValue },
-        { ...ethFarm, stakeBalance: pETH18CBalanceValue },
+        { ...btcFarm, stakeBalance: pBTCMBalanceValue },
+        { ...ethFarm, stakeBalance: pETHMBalanceValue },
       ])
     } catch (error) {
       console.log('[Error] getUserInfo => ', error)
     }
-  }, [account, pBTC35AContract, pETH18CContract])
+  }, [account, pBTCMContract, pETHMContract])
 
   useEffect(() => {
-    if (pBTC35AContract && pETH18CContract) {
+    if (pBTCMContract && pETHMContract) {
       getUserInfo()
     }
 
@@ -81,7 +81,7 @@ export function FarmProvider({ children }) {
         { ...prev[1], stakeBalance: 0 },
       ])
     }
-  }, [pBTC35AContract, pETH18CContract, account, getUserInfo])
+  }, [pBTCMContract, pETHMContract, account, getUserInfo])
 
   const onStake = async (balance, farm) => {
     if (!account) {
