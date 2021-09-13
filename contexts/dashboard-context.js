@@ -15,7 +15,7 @@ const initTokens = [
   },
   {
     isMNET: false,
-    tokenName: 'pBTC35A',
+    tokenName: 'pBTCM',
     price: 67.49,
     saleSupply: 85390,
     totalSupply: 300000000,
@@ -24,7 +24,7 @@ const initTokens = [
   },
   {
     isMNET: false,
-    tokenName: 'pETH18C',
+    tokenName: 'pETHM',
     price: 10.66,
     saleSupply: 199681.55,
     totalSupply: 1100000000,

@@ -37,7 +37,7 @@ const schema = yup.object().shape({
 const WithdrawDialog = ({
   open,
   setOpen,
-  token
+  farm
 }) => {
   const classes = useStyles();
 
@@ -48,6 +48,7 @@ const WithdrawDialog = ({
   const onSubmit = async (data) => {
     console.log(data)
     setValue('balance', 0)
+    setOpen(false);
   }
 
   const handleClose = useCallback(() => {
@@ -57,7 +58,7 @@ const WithdrawDialog = ({
   return (
     <PolkaDialog
       open={open}
-      title={`Withdraw ${token}`}
+      title={`Withdraw ${farm.stake}`}
       onClose={handleClose}
     >
       <form
@@ -70,11 +71,12 @@ const WithdrawDialog = ({
           name='balance'
           placeholder='Enter withdrawal amount'
           error={errors.balance?.message}
+          onMax={() => setValue('balance', farm.stakeBalance)}
           control={control}
           defaultValue={''}
         />
         <Typography align='right' className={classes.label}>
-          Unlocked {token}:0.000000
+          Unlocked {farm.stake}:0.000000
         </Typography>
         <GradientButton type='submit' className={classes.submit}>
           Withdraw

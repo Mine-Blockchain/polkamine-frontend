@@ -13,16 +13,16 @@ import MESSAGES from 'utils/constants/messages'
 
 const USDT_DECIMAL = IS_MAINNET ? 6 : 18
 
-const pBTC35A = {
+const pBTCM = {
   label: 'POW BTC-35W/T',
-  value: 'pBTC35A',
+  value: 'pBTCM',
   baseToken: 'BTC',
-  token: CONTRACTS.pBTC35A,
+  token: CONTRACTS.pBTCM,
   tokenPrice: 0,
   tokenSupply: 0,
   sold: 0,
   available: 0,
-  description: 'Each pBTC35A represents 1MH/s 35W/M BTC mining power',
+  description: 'Each pBTCM represents 1MH/s 35W/M BTC mining power',
   miner: {
     efficiency: 1.8,
     dissipationRate: 0,
@@ -57,16 +57,16 @@ const pBTC35A = {
   ]
 }
 
-const pETH18C = {
+const pETHM = {
   label: 'POW ETH-1.8W/M',
-  value: 'pETH18C',
+  value: 'pETHM',
   baseToken: 'ETH',
-  token: CONTRACTS.pETH18C,
+  token: CONTRACTS.pETHM,
   tokenPrice: 0,
   tokenSupply: 0,
   sold: 0,
   available: 0,
-  description: 'Each pETH18C represents 1MH/s 1.8W/M ETH mining power',
+  description: 'Each pETHM represents 1MH/s 1.8W/M ETH mining power',
   miner: {
     efficiency: 1.8,
     dissipationRate: 0,
@@ -89,8 +89,8 @@ const pETH18C = {
 }
 
 const unsignedSaleContract = new ethers.Contract(CONTRACTS.TOKEN_SALE, TOKEN_SALE_ABI, PROVIDER)
-const unsignedPBTC35AContract = new ethers.Contract(CONTRACTS.pBTC35A, P_BTC_ABI, PROVIDER)
-const unsignedPETH18CContract = new ethers.Contract(CONTRACTS.pETH18C, P_ETH_ABI, PROVIDER)
+const unsignedpBTCMContract = new ethers.Contract(CONTRACTS.pBTCM, P_BTC_ABI, PROVIDER)
+const unsignedpETHMContract = new ethers.Contract(CONTRACTS.pETHM, P_ETH_ABI, PROVIDER)
 const ContractContext = createContext(null)
 
 export function PurchaseProvider({ children }) {
@@ -99,7 +99,7 @@ export function PurchaseProvider({ children }) {
 
   const [loading, setLoading] = useState(false);
   const [usdtBalance, setUSDTBalance] = useState(0);
-  const [purchases, setPurchases] = useState([pBTC35A, pETH18C]);
+  const [purchases, setPurchases] = useState([pBTCM, pETHM]);
 
   const usdtContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.USDT, USDT_ABI, library.getSigner()) : null, [library])
   const saleContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.TOKEN_SALE, TOKEN_SALE_ABI, library.getSigner()) : null, [library])
@@ -119,12 +119,12 @@ export function PurchaseProvider({ children }) {
         pBTCSold,
         pETHSold,
       ] = await Promise.all([
-        unsignedSaleContract.tokenPrice(CONTRACTS.pBTC35A),
-        unsignedSaleContract.tokenPrice(CONTRACTS.pETH18C),
-        unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pBTC35A),
-        unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pETH18C),
-        unsignedPBTC35AContract.totalSupply(),
-        unsignedPETH18CContract.totalSupply(),
+        unsignedSaleContract.tokenPrice(CONTRACTS.pBTCM),
+        unsignedSaleContract.tokenPrice(CONTRACTS.pETHM),
+        unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pBTCM),
+        unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pETHM),
+        unsignedpBTCMContract.totalSupply(),
+        unsignedpETHMContract.totalSupply(),
       ]);
 
       const pBTCPriceValue = ethers.utils.formatUnits(pBTCPrice[1], 0)
@@ -137,8 +137,8 @@ export function PurchaseProvider({ children }) {
       const pETHAvailable = pETHSupplyValue - pETHSoldValue
 
       setPurchases([
-        { ...pBTC35A, tokenPrice: pBTCPriceValue, tokenSupply: pBTCSupplyValue, sold: pBTCSoldValue, available: pBTCAvailable },
-        { ...pETH18C, tokenPrice: pETHPriceValue, tokenSupply: pETHSupplyValue, sold: pETHSoldValue, available: pETHAvailable }
+        { ...pBTCM, tokenPrice: pBTCPriceValue, tokenSupply: pBTCSupplyValue, sold: pBTCSoldValue, available: pBTCAvailable },
+        { ...pETHM, tokenPrice: pETHPriceValue, tokenSupply: pETHSupplyValue, sold: pETHSoldValue, available: pETHAvailable }
       ])
     } catch (error) {
       console.log('[Error] getSupply => ', error)
