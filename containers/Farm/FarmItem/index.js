@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 
+import { ETHERSCAN_URL } from 'config'
 import PolkaTokenIcon from 'components/PolkaTokenIcon'
 import ExternalLinkIcon from 'components/Icons/ExternalLinkIcon'
 import ContainedButton from 'components/UI/Buttons/ContainedButton'
@@ -57,6 +58,14 @@ const useStyles = makeStyles((theme) => ({
   value: {
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  contractLink: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textDecoration: 'unset',
+    cursor: 'pointer',
+    color: theme.palette.primary.main
   },
   icon: {
     height: 12,
@@ -126,9 +135,14 @@ const FarmItem = ({
           <Typography className={classes.label} align='center'>
             Stake
           </Typography>
-          <Typography color='primary' className={classes.value} align='center'>
+          <a
+            href={`${ETHERSCAN_URL}/address/${farm.stakeAddress}`}
+            className={classes.contractLink}
+            target='_blank'
+            rel="noreferrer"
+          >
             {farm.stake} <ExternalLinkIcon className={classes.icon} />
-          </Typography>
+          </a>
         </div>
         <div className={classes.colContainer}>
           <Typography className={classes.label} align='center'>

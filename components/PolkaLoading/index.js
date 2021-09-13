@@ -7,7 +7,7 @@ import LoadingSpinner from './LoadingSpinner'
 const useStyles = makeStyles((theme) => ({
   root: props => ({
     position: 'absolute',
-    zIndex: theme.zIndex.drawer + 2,
+    zIndex: theme.zIndex.drawer + 1300,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

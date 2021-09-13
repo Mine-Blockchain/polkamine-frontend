@@ -16,7 +16,7 @@ const FarmStake = ({
     <FarmCardWrapper isStaking>
       <FarmActionForm
         token={farm.stake}
-        balance={0.000000}
+        balance={farm.stakeBalance}
         buttonLabel='Stake'
         description={`Locked ${farm.stake}`}
         onForm={() => setStakeModal(true)}
@@ -30,14 +30,14 @@ const FarmStake = ({
       />
       {stakeModal &&
         <StakeDialog
-          token={farm.stake}
+          farm={farm}
           open={stakeModal}
           setOpen={setStakeModal}
         />
       }
       {withdrawModal &&
         <WithdrawDialog
-          token={farm.stake}
+          farm={farm}
           open={withdrawModal}
           setOpen={setWithdrawModal}
         />

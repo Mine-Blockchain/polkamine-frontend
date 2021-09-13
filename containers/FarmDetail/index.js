@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core'
 import clsx from 'clsx'
 
 import { useFarm } from 'contexts/farm-context'
+import PolkaLoading from 'components/PolkaLoading'
 import FarmDetailHeader from './FarmDetailHeader'
 import FarmStake from './FarmStake'
 import FarmClaim from './FarmClaim'
@@ -32,13 +33,14 @@ const FarmDetail = () => {
   const classes = useStyles()
   const commonClasses = useCommonStyles()
   const router = useRouter()
-  const { farms } = useFarm()
+  const { loading, farms } = useFarm()
 
   const farm = useMemo(() => farms.find((farm) => farm.tokenName === router.query.token)
     , [router.query.token, farms]);
 
   return (
     <main className={classes.root}>
+      {loading && <PolkaLoading loading={loading} />}
       <div className={clsx(commonClasses.containerWidth, classes.container)}>
         {!isEmpty(farm) &&
           <>

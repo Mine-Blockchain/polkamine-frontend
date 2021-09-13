@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { useFarm } from 'contexts/farm-context'
 import PolkaDialog from 'components/PolkaDialog'
 import TokenTextField from 'components/UI/TextFields/TokenTextField'
 import { BALANCE_VALID } from 'utils/constants/validations'
@@ -37,17 +38,19 @@ const schema = yup.object().shape({
 const StakeDialog = ({
   open,
   setOpen,
-  token
+  farm
 }) => {
   const classes = useStyles();
+  const { onStake } = useFarm()
 
   const { control, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(schema)
   });
 
   const onSubmit = async (data) => {
-    console.log(data)
+    await onStake(data.balance, farm)
     setValue('balance', 0)
+    setOpen(false);
   }
 
   const handleClose = useCallback(() => {
@@ -57,7 +60,7 @@ const StakeDialog = ({
   return (
     <PolkaDialog
       open={open}
-      title={`Deposit ${token}`}
+      title={`Deposit ${farm.stake}`}
       onClose={handleClose}
     >
       <form
@@ -70,11 +73,12 @@ const StakeDialog = ({
           name='balance'
           placeholder='Enter stake amount'
           error={errors.balance?.message}
+          onMax={() => setValue('balance', farm.stakeBalance)}
           control={control}
           defaultValue={''}
         />
         <Typography align='right' className={classes.label}>
-          Locked {token}:0.000000
+          {`Locked ${farm.stake}:${farm.stakeBalance}`}
         </Typography>
         <GradientButton type='submit' className={classes.submit}>
           Stake
