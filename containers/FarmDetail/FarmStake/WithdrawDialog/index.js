@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { useFarm } from 'contexts/farm-context'
 import PolkaDialog from 'components/PolkaDialog'
 import TokenTextField from 'components/UI/TextFields/TokenTextField'
 import { BALANCE_VALID } from 'utils/constants/validations'
@@ -40,13 +41,14 @@ const WithdrawDialog = ({
   farm
 }) => {
   const classes = useStyles();
+  const { onWithdraw } = useFarm()
 
   const { control, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(schema)
   });
 
   const onSubmit = async (data) => {
-    console.log(data)
+    await onWithdraw(data.balance, farm)
     setValue('balance', 0)
     setOpen(false);
   }
@@ -71,12 +73,12 @@ const WithdrawDialog = ({
           name='balance'
           placeholder='Enter withdrawal amount'
           error={errors.balance?.message}
-          onMax={() => setValue('balance', farm.stakeBalance)}
+          onMax={() => setValue('balance', farm.stakedBalance)}
           control={control}
           defaultValue={''}
         />
         <Typography align='right' className={classes.label}>
-          Unlocked {farm.stake}:0.000000
+          {`Unlocked ${farm.stake}:${farm.stakedBalance}`}
         </Typography>
         <GradientButton type='submit' className={classes.submit}>
           Withdraw

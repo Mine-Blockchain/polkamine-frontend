@@ -23,7 +23,7 @@ const FarmStake = ({
       />
       <FarmActionForm
         token={farm.stake}
-        balance={0.000000}
+        balance={farm.stakedBalance}
         buttonLabel='Withdraw'
         description={`Unlocked ${farm.stake}`}
         onForm={() => setWithdrawModal(true)}
