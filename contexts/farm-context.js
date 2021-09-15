@@ -194,6 +194,17 @@ export function FarmProvider({ children }) {
     try {
       const { pid } = farm;
       const amount = ethers.utils.parseEther(balance.toString());
+
+      const tokenBalance = await poolManagerContract.userStakes(pid, account);
+      if (amount.gt(tokenBalance)) {
+        setPopUp({
+          title: 'Balance Error',
+          text: `Please check balance of token on your wallet.`
+        })
+        setLoading(false)
+        return;
+      }
+
       const tokenWithdraw = await poolManagerContract.unstake(pid, amount);
       const transactionWithdraw = await tokenWithdraw.wait(1);
 
