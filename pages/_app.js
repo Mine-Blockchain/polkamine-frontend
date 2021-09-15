@@ -6,7 +6,6 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import Layout from 'Layout'
 import { WalletProvider } from 'contexts/wallet-context'
 import { PopupProvider } from 'contexts/popup-context'
-import { PriceProvider } from 'contexts/price-context'
 import { ContractProvider } from 'contexts/contract-context'
 import PolkaWeb3Provider from 'utils/hocs/PolkaWeb3Provider'
 import * as COMMON_CONSTANTS from 'utils/constants/common'
@@ -49,14 +48,12 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <WalletProvider>
             <PopupProvider>
-              <PriceProvider>
-                <ContractProvider>
-                  <CssBaseline />
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </ContractProvider>
-              </PriceProvider>
+              <ContractProvider>
+                <CssBaseline />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </ContractProvider>
             </PopupProvider>
           </WalletProvider>
         </ThemeProvider>

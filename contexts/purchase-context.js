@@ -121,10 +121,10 @@ export function PurchaseProvider({ children }) {
       ] = await Promise.all([
         unsignedSaleContract.tokenPrice(CONTRACTS.pBTCM),
         unsignedSaleContract.tokenPrice(CONTRACTS.pETHM),
-        unsignedpBTCMContract.totalSupply(),
-        unsignedpETHMContract.totalSupply(),
         unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pBTCM),
         unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pETHM),
+        unsignedpBTCMContract.totalSupply(),
+        unsignedpETHMContract.totalSupply(),
       ]);
 
       const pBTCPriceValue = ethers.utils.formatUnits(pBTCPrice[1], 0)

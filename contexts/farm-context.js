@@ -8,6 +8,7 @@ import POOL_MANAGER_ABI from 'libs/abis/pool-manager.json'
 import ERC20_ABI from 'libs/abis/erc20.json'
 import P_BTC_ABI from 'libs/abis/p-btc.json'
 import P_ETH_ABI from 'libs/abis/p-eth.json'
+import REWARD_DISTRIBUTOR_ABI from 'libs/abis/reward-distributor.json'
 import { isEmpty } from 'utils/helpers/utility'
 import MESSAGES from 'utils/constants/messages'
 
@@ -52,6 +53,7 @@ export function FarmProvider({ children }) {
   const pBTCMContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pBTCM, P_BTC_ABI, library.getSigner()) : null, [library])
   const pETHMContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pETHM, P_ETH_ABI, library.getSigner()) : null, [library])
   const poolManagerContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.POOL_MANAGER, POOL_MANAGER_ABI, library.getSigner()) : null, [library])
+  const rewardDistributorContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.REWARD_DISTRIBUTOR, REWARD_DISTRIBUTOR_ABI, library.getSigner()) : null, [library])
 
   useEffect(() => {
     getSupply();
@@ -226,13 +228,49 @@ export function FarmProvider({ children }) {
     setLoading(false);
   }
 
+  const onClaim = async (balance, farm) => {
+    if (!account) {
+      setPopUp({
+        title: 'Network Error',
+        text: MESSAGES.METAMASK_NOT_CONNECTED
+      })
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { stakeAddress } = farm;
+      const amount = ethers.utils.parseEther(balance.toString());
+
+      const tokenClaim = await rewardDistributorContract.claim(stakeAddress, amount);
+      const transactionClaim = await tokenClaim.wait(1);
+
+      if (transactionClaim.status) {
+        setPopUp({
+          title: 'Success',
+          text: `You have claimed successfully`
+        })
+        getUserInfo();
+      } else {
+        setPopUp({
+          title: 'Error',
+          text: `There is an Error in Claim Transaction`
+        })
+      }
+    } catch (error) {
+      console.log('onClaim => ', error);
+    }
+    setLoading(false);
+  }
+
   return (
     <ContractContext.Provider
       value={{
         loading,
         farms,
         onStake,
-        onWithdraw
+        onWithdraw,
+        onClaim
       }}
     >
       {children}
@@ -250,13 +288,15 @@ export function useFarm() {
     loading,
     farms,
     onStake,
-    onWithdraw
+    onWithdraw,
+    onClaim
   } = context
 
   return {
     loading,
     farms,
     onStake,
-    onWithdraw
+    onWithdraw,
+    onClaim
   }
 }
