@@ -1,4 +1,6 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect } from 'react'
+
+import * as mineAPI from 'services/api-mine'
 
 const ContractContext = createContext(null)
 
@@ -35,6 +37,18 @@ const initTokens = [
 
 export function DashboardProvider({ children }) {
   // const [tokens, setTokens] = useState(initTokens);
+  useEffect(() => {
+    getPools()
+  }, [])
+
+  const getPools = async () => {
+    try {
+      const response = await mineAPI.getPools();
+      console.log(response)
+    } catch (error) {
+      console.log('[Error] getPools => ', error)
+    }
+  }
 
   return (
     <ContractContext.Provider

@@ -33,10 +33,13 @@ const PROVIDER = new ethers.providers.getDefaultProvider(IS_MAINNET ? 'homestead
 
 const ETHERSCAN_URL = IS_MAINNET ? 'https://etherscan.io' : 'https://ropsten.etherscan.io'
 
+const PROXY_URL = 'https://vast-reef-88900.herokuapp.com'
+
 export {
   IS_MAINNET,
   CHAIN_ID,
   CONTRACTS,
   PROVIDER,
-  ETHERSCAN_URL
+  ETHERSCAN_URL,
+  PROXY_URL
 }
