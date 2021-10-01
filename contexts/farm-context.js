@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import { useWeb3React } from '@web3-react/core'
 
 import { CONTRACTS, PROVIDER } from 'config'
+import * as mineAPI from 'services/api-mine'
 import { usePopup } from 'contexts/popup-context'
 import POOL_MANAGER_ABI from 'libs/abis/pool-manager.json'
 import ERC20_ABI from 'libs/abis/erc20.json'
@@ -65,17 +66,19 @@ export function FarmProvider({ children }) {
       const [
         pBTCSupply,
         pETHSupply,
+        pools
       ] = await Promise.all([
         unsignedPoolManagerContract.poolStakes(0),
         unsignedPoolManagerContract.poolStakes(1),
+        mineAPI.getPools()
       ]);
 
       const pBTCSupplyValue = ethers.utils.formatUnits(pBTCSupply)
       const pETHSupplyValue = ethers.utils.formatUnits(pETHSupply)
 
       setFarms((prev) => [
-        { ...prev[0], totalSupply: pBTCSupplyValue },
-        { ...prev[1], totalSupply: pETHSupplyValue },
+        { ...prev[0], ...pools[0], totalSupply: pBTCSupplyValue },
+        { ...prev[1], ...pools[1], totalSupply: pETHSupplyValue },
       ])
     } catch (error) {
       console.log('[Error] getSupply => ', error)
@@ -89,16 +92,22 @@ export function FarmProvider({ children }) {
         pETHMBalance,
         pBTCMStaked,
         pETHMStaked,
+        pBTCMClaimAmount,
+        pETHMClaimAmount,
       ] = await Promise.all([
         pBTCMContract['balanceOf(address)'](account),
         pETHMContract['balanceOf(address)'](account),
         poolManagerContract.userStakes(0, account),
         poolManagerContract.userStakes(1, account),
+        mineAPI.getClaimableAmount(account, '0'),
+        mineAPI.getClaimableAmount(account, '1')
       ]);
       const pBTCMBalanceValue = ethers.utils.formatUnits(pBTCMBalance)
       const pETHMBalanceValue = ethers.utils.formatUnits(pETHMBalance)
       const pBTCMStakedValue = ethers.utils.formatUnits(pBTCMStaked)
       const pETHMStakedValue = ethers.utils.formatUnits(pETHMStaked)
+      console.log('pBTCMClaimAmount => ', pBTCMClaimAmount)
+      console.log('pETHMClaimAmount => ', pETHMClaimAmount)
 
       setFarms((prev) => [
         { ...prev[0], stakeBalance: pBTCMBalanceValue, stakedBalance: pBTCMStakedValue },
@@ -109,6 +118,7 @@ export function FarmProvider({ children }) {
     }
   }, [account, pBTCMContract, pETHMContract, poolManagerContract])
 
+  console.log('farms => ', farms)
   useEffect(() => {
     if (pBTCMContract && pETHMContract && poolManagerContract) {
       getUserInfo()
