@@ -5,6 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { CONTRACTS, PROVIDER } from 'config'
 import * as mineAPI from 'services/api-mine'
 import { usePopup } from 'contexts/popup-context'
+import { useContracts } from './contract-context'
 import POOL_MANAGER_ABI from 'libs/abis/pool-manager.json'
 import ERC20_ABI from 'libs/abis/erc20.json'
 import P_BTC_ABI from 'libs/abis/p-btc.json'
@@ -16,7 +17,7 @@ import MESSAGES from 'utils/constants/messages'
 const ContractContext = createContext(null)
 
 const btcFarm = {
-  pid: 0,
+  pid: '0',
   tokenName: 'BTC',
   boost: 1,
   staticAPY: 0.8141,
@@ -30,7 +31,7 @@ const btcFarm = {
 }
 
 const ethFarm = {
-  pid: 1,
+  pid: '1',
   tokenName: 'ETH',
   boost: 1,
   staticAPY: 0.0302,
@@ -48,8 +49,10 @@ const unsignedPoolManagerContract = new ethers.Contract(CONTRACTS.POOL_MANAGER, 
 export function FarmProvider({ children }) {
   const { account, library } = useWeb3React();
   const { setPopUp } = usePopup();
+  const { getBalanceInfo } = useContracts()
 
   const [loading, setLoading] = useState(false);
+  const [initSupply, setInitSupply] = useState(false)
   const [farms, setFarms] = useState([btcFarm, ethFarm]);
   const pBTCMContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pBTCM, P_BTC_ABI, library.getSigner()) : null, [library])
   const pETHMContract = useMemo(() => library ? new ethers.Contract(CONTRACTS.pETHM, P_ETH_ABI, library.getSigner()) : null, [library])
@@ -75,11 +78,14 @@ export function FarmProvider({ children }) {
 
       const pBTCSupplyValue = ethers.utils.formatUnits(pBTCSupply)
       const pETHSupplyValue = ethers.utils.formatUnits(pETHSupply)
+      const pool0Info = pools.find(pool => pool.id === btcFarm.pid)
+      const pool1Info = pools.find(pool => pool.id === ethFarm.pid)
 
       setFarms((prev) => [
-        { ...prev[0], ...pools[0], totalSupply: pBTCSupplyValue },
-        { ...prev[1], ...pools[1], totalSupply: pETHSupplyValue },
+        { ...prev[0], ...pool0Info, totalSupply: pBTCSupplyValue },
+        { ...prev[1], ...pool1Info, totalSupply: pETHSupplyValue },
       ])
+      setInitSupply(true)
     } catch (error) {
       console.log('[Error] getSupply => ', error)
     }
@@ -99,28 +105,25 @@ export function FarmProvider({ children }) {
         pETHMContract['balanceOf(address)'](account),
         poolManagerContract.userStakes(0, account),
         poolManagerContract.userStakes(1, account),
-        mineAPI.getClaimableAmount(account, '0'),
-        mineAPI.getClaimableAmount(account, '1')
+        mineAPI.getClaimableAmount(account, btcFarm.pid),
+        mineAPI.getClaimableAmount(account, ethFarm.pid)
       ]);
       const pBTCMBalanceValue = ethers.utils.formatUnits(pBTCMBalance)
       const pETHMBalanceValue = ethers.utils.formatUnits(pETHMBalance)
       const pBTCMStakedValue = ethers.utils.formatUnits(pBTCMStaked)
       const pETHMStakedValue = ethers.utils.formatUnits(pETHMStaked)
-      console.log('pBTCMClaimAmount => ', pBTCMClaimAmount)
-      console.log('pETHMClaimAmount => ', pETHMClaimAmount)
 
       setFarms((prev) => [
-        { ...prev[0], stakeBalance: pBTCMBalanceValue, stakedBalance: pBTCMStakedValue },
-        { ...prev[1], stakeBalance: pETHMBalanceValue, stakedBalance: pETHMStakedValue },
+        { ...prev[0], ...pBTCMClaimAmount, stakeBalance: pBTCMBalanceValue, stakedBalance: pBTCMStakedValue },
+        { ...prev[1], ...pETHMClaimAmount, stakeBalance: pETHMBalanceValue, stakedBalance: pETHMStakedValue },
       ])
     } catch (error) {
       console.log('[Error] getUserInfo => ', error)
     }
   }, [account, pBTCMContract, pETHMContract, poolManagerContract])
 
-  console.log('farms => ', farms)
   useEffect(() => {
-    if (pBTCMContract && pETHMContract && poolManagerContract) {
+    if (initSupply && pBTCMContract && pETHMContract && poolManagerContract) {
       getUserInfo()
     }
 
@@ -130,7 +133,7 @@ export function FarmProvider({ children }) {
         { ...prev[1], stakeBalance: 0 },
       ])
     }
-  }, [pBTCMContract, pETHMContract, poolManagerContract, account, getUserInfo])
+  }, [initSupply, pBTCMContract, pETHMContract, poolManagerContract, account, getUserInfo])
 
   const onStake = async (balance, farm) => {
     if (!account) {
@@ -238,7 +241,7 @@ export function FarmProvider({ children }) {
     setLoading(false);
   }
 
-  const onClaim = async (balance, farm) => {
+  const onClaim = async (farm) => {
     if (!account) {
       setPopUp({
         title: 'Network Error',
@@ -249,10 +252,11 @@ export function FarmProvider({ children }) {
 
     setLoading(true);
     try {
-      const { stakeAddress } = farm;
-      const amount = ethers.utils.parseEther(balance.toString());
+      const { pid, rewardToken } = farm;
+      const { doubleRewardAmount, rewardAmount, rewardIndex, signature } = await mineAPI.getClaimableSignature(account, pid);
 
-      const tokenClaim = await rewardDistributorContract.claim(stakeAddress, amount);
+      console.log(pid, ', ', rewardToken, ', ', rewardAmount, ', ', CONTRACTS.MNET, ', ', doubleRewardAmount, ', ', rewardIndex, ', ', signature)
+      const tokenClaim = await rewardDistributorContract.claim(pid, rewardToken, rewardAmount, CONTRACTS.MNET, doubleRewardAmount, rewardIndex, signature, { gasLimit: 1000000 });
       const transactionClaim = await tokenClaim.wait(1);
 
       if (transactionClaim.status) {
@@ -261,6 +265,7 @@ export function FarmProvider({ children }) {
           text: `You have claimed successfully`
         })
         getUserInfo();
+        getBalanceInfo();
       } else {
         setPopUp({
           title: 'Error',

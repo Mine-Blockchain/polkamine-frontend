@@ -22,11 +22,16 @@ const getPool = async (id) => {
 }
 
 const getClaimableAmount = async (address, poolId) => {
-  return await apiAxios.get(`/api/v1/user/claimable?address=${address}&poolId=${poolId}`)
+  return await apiAxios.get(`/api/v1/user/claimable?address=${address.toLowerCase()}&poolId=${poolId}`)
+}
+
+const getClaimableSignature = async (address, poolId) => {
+  return await apiAxios.get(`/api/v1/user/claimreq?address=${address.toLowerCase()}&poolId=${poolId}`)
 }
 
 export {
   getPools,
   getPool,
-  getClaimableAmount
+  getClaimableAmount,
+  getClaimableSignature
 };

@@ -123,14 +123,14 @@ const FarmItem = ({
       </div>
 
       <div className={classes.rowContainer}>
-        <div className={classes.colContainer}>
+        {/* <div className={classes.colContainer}>
           <Typography className={classes.label} align='center'>
             Static APY
           </Typography>
           <Typography color='primary' className={classes.value} align='center'>
             {(farm.staticAPY * 100).toLocaleString()}%
           </Typography>
-        </div>
+        </div> */}
         <div className={classes.colContainer}>
           <Typography className={classes.label} align='center'>
             Stake

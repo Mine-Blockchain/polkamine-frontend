@@ -50,9 +50,11 @@ const FarmActionForm = ({
       <Typography color='textSecondary' className={classes.description} align='center'>
         {description}
       </Typography>
-      <ContainedButton className={classes.button} onClick={onForm}>
-        {buttonLabel}
-      </ContainedButton>
+      {buttonLabel &&
+        <ContainedButton className={classes.button} onClick={onForm}>
+          {buttonLabel}
+        </ContainedButton>
+      }
     </div >
   )
 }
