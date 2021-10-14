@@ -32,6 +32,7 @@ const FarmClaim = ({
     <FarmCardWrapper
       footer={
         <ContainedButton
+          disabled={(parseFloat(rewardAmount) + parseFloat(doubleRewardAmount) === 0) || (new Date(farm.lastClaimedAt * 1000) > new Date())}
           className={classes.button}
           onClick={claimHandler}
         >

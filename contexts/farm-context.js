@@ -98,6 +98,9 @@ export function FarmProvider({ children }) {
         pETHMBalance,
         pBTCMStaked,
         pETHMStaked,
+        claimInterval,
+        pBTCUserLastClaimedAt,
+        pETHUserLastClaimedAt,
         pBTCMClaimAmount,
         pETHMClaimAmount,
       ] = await Promise.all([
@@ -105,6 +108,9 @@ export function FarmProvider({ children }) {
         pETHMContract['balanceOf(address)'](account),
         poolManagerContract.userStakes(0, account),
         poolManagerContract.userStakes(1, account),
+        rewardDistributorContract.claimInterval(),
+        rewardDistributorContract.userLastClaimedAt(account, 0),
+        rewardDistributorContract.userLastClaimedAt(account, 1),
         mineAPI.getClaimableAmount(account, btcFarm.pid),
         mineAPI.getClaimableAmount(account, ethFarm.pid)
       ]);
@@ -112,18 +118,21 @@ export function FarmProvider({ children }) {
       const pETHMBalanceValue = ethers.utils.formatUnits(pETHMBalance)
       const pBTCMStakedValue = ethers.utils.formatUnits(pBTCMStaked)
       const pETHMStakedValue = ethers.utils.formatUnits(pETHMStaked)
+      const claimIntervalValue = parseFloat(ethers.utils.formatUnits(claimInterval, 0))
+      const pBTCUserLastClaimedAtValue = claimIntervalValue + parseFloat(ethers.utils.formatUnits(pBTCUserLastClaimedAt, 0))
+      const pETHUserLastClaimedAtValue = claimIntervalValue + parseFloat(ethers.utils.formatUnits(pETHUserLastClaimedAt, 0))
 
       setFarms((prev) => [
-        { ...prev[0], ...pBTCMClaimAmount, stakeBalance: pBTCMBalanceValue, stakedBalance: pBTCMStakedValue },
-        { ...prev[1], ...pETHMClaimAmount, stakeBalance: pETHMBalanceValue, stakedBalance: pETHMStakedValue },
+        { ...prev[0], ...pBTCMClaimAmount, stakeBalance: pBTCMBalanceValue, stakedBalance: pBTCMStakedValue, lastClaimedAt: pBTCUserLastClaimedAtValue },
+        { ...prev[1], ...pETHMClaimAmount, stakeBalance: pETHMBalanceValue, stakedBalance: pETHMStakedValue, lastClaimedAt: pETHUserLastClaimedAtValue },
       ])
     } catch (error) {
       console.log('[Error] getUserInfo => ', error)
     }
-  }, [account, pBTCMContract, pETHMContract, poolManagerContract])
+  }, [account, pBTCMContract, pETHMContract, poolManagerContract, rewardDistributorContract])
 
   useEffect(() => {
-    if (initSupply && pBTCMContract && pETHMContract && poolManagerContract) {
+    if (initSupply && pBTCMContract && pETHMContract && poolManagerContract && rewardDistributorContract) {
       getUserInfo()
     }
 
@@ -133,7 +142,7 @@ export function FarmProvider({ children }) {
         { ...prev[1], stakeBalance: 0 },
       ])
     }
-  }, [initSupply, pBTCMContract, pETHMContract, poolManagerContract, account, getUserInfo])
+  }, [initSupply, pBTCMContract, pETHMContract, poolManagerContract, rewardDistributorContract, account, getUserInfo])
 
   const onStake = async (balance, farm) => {
     if (!account) {
@@ -255,7 +264,6 @@ export function FarmProvider({ children }) {
       const { pid, rewardToken } = farm;
       const { doubleRewardAmount, rewardAmount, rewardIndex, signature } = await mineAPI.getClaimableSignature(account, pid);
 
-      console.log(pid, ', ', rewardToken, ', ', rewardAmount, ', ', CONTRACTS.MNET, ', ', doubleRewardAmount, ', ', rewardIndex, ', ', signature)
       const tokenClaim = await rewardDistributorContract.claim(pid, rewardToken, rewardAmount, CONTRACTS.MNET, doubleRewardAmount, rewardIndex, signature, { gasLimit: 1000000 });
       const transactionClaim = await tokenClaim.wait(1);
 
