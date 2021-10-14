@@ -299,19 +299,5 @@ export function useFarm() {
     throw new Error('Missing stats context')
   }
 
-  const {
-    loading,
-    farms,
-    onStake,
-    onWithdraw,
-    onClaim
-  } = context
-
-  return {
-    loading,
-    farms,
-    onStake,
-    onWithdraw,
-    onClaim
-  }
+  return context
 }

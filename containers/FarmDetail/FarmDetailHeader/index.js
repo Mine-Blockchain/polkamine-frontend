@@ -1,5 +1,5 @@
 
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
@@ -50,9 +50,9 @@ const FarmDetailHeader = ({
   const classes = useStyles()
   const router = useRouter()
 
-  const backHandler = () => {
+  const backHandler = useCallback(() => {
     router.push(LINKS.FARM.HREF)
-  }
+  }, [router])
 
   return (
     <div className={classes.root}>

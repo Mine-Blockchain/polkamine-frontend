@@ -263,17 +263,5 @@ export function usePurchases() {
     throw new Error('Missing stats context')
   }
 
-  const {
-    loading,
-    usdtBalance,
-    purchases,
-    onPurchase
-  } = context
-
-  return {
-    loading,
-    usdtBalance,
-    purchases,
-    onPurchase
-  }
+  return context
 }

@@ -47,11 +47,11 @@ const WithdrawDialog = ({
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = useCallback(async (data) => {
     await onWithdraw(data.balance, farm)
     setValue('balance', 0)
     setOpen(false);
-  }
+  }, [farm, setOpen, setValue, onWithdraw])
 
   const handleClose = useCallback(() => {
     setOpen(false);

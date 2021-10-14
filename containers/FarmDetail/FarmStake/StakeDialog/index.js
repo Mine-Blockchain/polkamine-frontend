@@ -8,9 +8,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import { useFarm } from 'contexts/farm-context'
 import PolkaDialog from 'components/PolkaDialog'
+import GradientButton from 'components/UI/Buttons/GradientButton'
 import TokenTextField from 'components/UI/TextFields/TokenTextField'
 import { BALANCE_VALID } from 'utils/constants/validations'
-import GradientButton from 'components/UI/Buttons/GradientButton'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -47,11 +47,11 @@ const StakeDialog = ({
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = useCallback(async (data) => {
     await onStake(data.balance, farm)
     setValue('balance', 0)
     setOpen(false);
-  }
+  }, [farm, setOpen, setValue, onStake])
 
   const handleClose = useCallback(() => {
     setOpen(false);

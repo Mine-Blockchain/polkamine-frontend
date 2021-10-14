@@ -1,5 +1,5 @@
 
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 import RightArrowIcon from 'components/Icons/RightArrowIcon'
@@ -23,9 +23,9 @@ const PurchaseTabs = ({
 }) => {
   const classes = useStyles()
 
-  const tabHandler = (tab) => () => {
+  const tabHandler = useCallback((tab) => () => {
     setSelectedTab(tab)
-  }
+  }, [setSelectedTab])
 
   return (PURCHASE_TABS_ARRAY.map((item) => (
     <div

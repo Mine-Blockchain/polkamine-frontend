@@ -79,15 +79,5 @@ export function useContracts() {
     throw new Error('Missing stats context')
   }
 
-  const {
-    isWrongNetwork,
-    balances,
-    getBalanceInfo
-  } = context
-
-  return {
-    isWrongNetwork,
-    balances,
-    getBalanceInfo
-  }
+  return context
 }
