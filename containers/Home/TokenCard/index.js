@@ -58,7 +58,7 @@ const TokenCard = ({
 
       <Typography className={classes.title}>
         {parseFloat(token.saleSupply).toLocaleString()}
-        {token.isMNET && `(${token.apy * 100}%)`}
+        {token.isMNET && `(${(token.apy * 100).toFixed(2)}%)`}
       </Typography>
       <Typography className={classes.description}>
         {token.isMNET ? 'Circulating Supply' : 'On Sale'}

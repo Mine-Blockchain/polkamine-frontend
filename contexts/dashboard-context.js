@@ -15,7 +15,7 @@ const mnetToken = {
   tokenName: 'MNET',
   price: 0,
   saleSupply: 0,
-  apy: 0.1496,
+  apy: 0,
   totalSupply: 0,
   totalSupplyLink: 'https://www.mine.network',
   description: ''
@@ -88,9 +88,10 @@ export function DashboardProvider({ children }) {
       const pETHSoldValue = ethers.utils.formatUnits(pETHSold)
       const mnetTotalSupplyValue = ethers.utils.formatUnits(mnetTotalSupply)
       const { data: { dai = {} } = {} } = mnetInfo
+      const mnetAPY = dai.usd_market_cap / mnetTotalSupplyValue
 
       setTokens([
-        { ...mnetToken, price: dai.usd, totalSupply: mnetTotalSupplyValue, saleSupply: dai.usd_market_cap },
+        { ...mnetToken, price: dai.usd, totalSupply: mnetTotalSupplyValue, saleSupply: dai.usd_market_cap, apy: mnetAPY },
         { ...pBTCMToken, price: pBTCPriceValue, totalSupply: pBTCSupplyValue, saleSupply: pBTCSoldValue },
         { ...pETHMToken, price: pETHPriceValue, totalSupply: pETHSupplyValue, saleSupply: pETHSoldValue }
       ])
