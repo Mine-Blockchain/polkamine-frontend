@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    cursor: 'pointer',
     padding: theme.spacing(1.5, 2),
     borderRadius: theme.spacing(1),
     border: `0.5px solid ${theme.custom.palette.border}`
