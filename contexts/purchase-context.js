@@ -121,10 +121,10 @@ export function PurchaseProvider({ children }) {
       ] = await Promise.all([
         unsignedSaleContract.tokenPrice(CONTRACTS.pBTCM),
         unsignedSaleContract.tokenPrice(CONTRACTS.pETHM),
-        unsignedpBTCMContract.totalSupply(),
-        unsignedpETHMContract.totalSupply(),
         unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pBTCM),
         unsignedSaleContract.tokenSupplyAmount(CONTRACTS.pETHM),
+        unsignedpBTCMContract.totalSupply(),
+        unsignedpETHMContract.totalSupply(),
       ]);
 
       const pBTCPriceValue = ethers.utils.formatUnits(pBTCPrice[1], 0)
@@ -263,17 +263,5 @@ export function usePurchases() {
     throw new Error('Missing stats context')
   }
 
-  const {
-    loading,
-    usdtBalance,
-    purchases,
-    onPurchase
-  } = context
-
-  return {
-    loading,
-    usdtBalance,
-    purchases,
-    onPurchase
-  }
+  return context
 }

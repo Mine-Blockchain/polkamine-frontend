@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -41,13 +41,13 @@ const ConnectWallet = () => {
   const { account, active, error, deactivate } = useWeb3React();
   const { balances } = useContracts();
 
-  const walletHandler = () => {
+  const walletHandler = useCallback(() => {
     if ((active || error)) {
       deactivate();
       return
     }
     setIsWalletDialog(true)
-  }
+  }, [active, error, deactivate, setIsWalletDialog])
 
   return (
     <div className={classes.root}>

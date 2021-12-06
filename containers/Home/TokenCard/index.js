@@ -50,22 +50,22 @@ const TokenCard = ({
       </div>
 
       <Typography className={classes.title}>
-        {`$ ${token.price}`}
+        {`$${token.price}`}
       </Typography>
       <Typography className={classes.description}>
         Current Price
       </Typography>
 
       <Typography className={classes.title}>
-        {token.saleSupply.toLocaleString()}
-        {token.isMNET && `(${token.apy * 100}%)`}
+        {parseFloat(token.saleSupply).toLocaleString()}
+        {token.isMNET && `(${(token.apy * 100).toFixed(2)}%)`}
       </Typography>
       <Typography className={classes.description}>
         {token.isMNET ? 'Circulating Supply' : 'On Sale'}
       </Typography>
 
       <Typography className={classes.title}>
-        {token.totalSupply.toLocaleString()}
+        {parseFloat(token.totalSupply).toLocaleString()}
       </Typography>
       <a href={token.totalSupplyLink} className={classes.link}>
         {token.isMNET ? 'Total Supply' : 'Supply'}
