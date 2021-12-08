@@ -7,7 +7,7 @@ const NETWORK_URL = 'https://api.avax.network/ext/bc/C/rpc'
 
 const walletlink = new WalletLinkConnector({
   url: NETWORK_URL,
-  appName: 'Polkamine',
+  appName: 'Mine',
   appLogoUrl: 'https://raw.githubusercontent.com/Snowball-Finance/app-v2/master/public/assets/images/logo.png'
 })
 

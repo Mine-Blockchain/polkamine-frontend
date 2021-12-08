@@ -22,7 +22,7 @@ export function ContractProvider({ children }) {
     if (library && chainId !== CHAIN_ID) {
       setPopUp({
         title: 'Network Error',
-        text: `Switch to Polka Chain`
+        text: `Switch to Ethereum Chain`
       })
       return;
     }

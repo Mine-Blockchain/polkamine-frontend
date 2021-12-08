@@ -8,10 +8,9 @@
 
 ## Summary
 
-This project is the App Page for PolkaMine and  a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This project is the App Page for Mine and  a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Local http://localhost:3000
-### Development https://polkamine-frontend.vercel.app/
 
 ---
 
@@ -20,7 +19,7 @@ This project is the App Page for PolkaMine and  a [Next.js](https://nextjs.org/)
 
 ```bash
 VERSION='1.0-rc'
-APPNAME='PolkaMine'
+APPNAME='Mine'
 
 NETWORK=mainnet or testnet
 ```
