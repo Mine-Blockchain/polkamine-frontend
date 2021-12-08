@@ -69,9 +69,49 @@ yarn deploy:vercel
 - React.js(NEXT.js) + Material-UI
 ---
 
-## Pages
+## Tutorials
 
 ### Home Page
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<img src="https://raw.githubusercontent.com/Mine-Blockchain/polkamine-frontend/main/public/assets/images/tutorial/home.jpg" width="1000px;" alt=""/>
+
+On Home page, user can see detail infos of MNET, pBTCM and PETHM
+
+### Wallet Connect
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<img src="https://raw.githubusercontent.com/Mine-Blockchain/polkamine-frontend/main/public/assets/images/tutorial/connect%20wallet.jpg" width="1000px;" alt=""/>
+
+On this APP, user can use Metamask and WalletLink. Please click connect button on right of Top APP Bar.
+
+### Purchase Page
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<img src="https://raw.githubusercontent.com/Mine-Blockchain/polkamine-frontend/main/public/assets/images/tutorial/Purchase.jpg" width="1000px;" alt=""/>
+
+On Purchase Page, user can buy pETHM and PBTCM with USDT.
+
+### Farms Page
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<img src="https://raw.githubusercontent.com/Mine-Blockchain/polkamine-frontend/main/public/assets/images/tutorial/farms.jpg" width="1000px;" alt=""/>
+
+On Farms Page, user can select pool for staking or withdrawing.
+
+
+### Farm Detail Page
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<img src="https://raw.githubusercontent.com/Mine-Blockchain/polkamine-frontend/main/public/assets/images/tutorial/farm-detail.jpg" width="1000px;" alt=""/>
+
+On Farm detail Page, user can stake, withdraw and claim rewards. When user click button, user can see following Modal.
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<img src="https://raw.githubusercontent.com/Mine-Blockchain/polkamine-frontend/main/public/assets/images/tutorial/stake.jpg" width="1000px;" alt=""/>
+
+
 ---
 ## Contributors ✨
 
