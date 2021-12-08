@@ -1,5 +1,5 @@
 
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
@@ -83,12 +83,12 @@ const FarmItem = ({
   const classes = useStyles()
   const router = useRouter()
 
-  const detailHandler = () => {
+  const detailHandler = useCallback(() => {
     router.push(
       LINKS.FARM_DETAIL.HREF,
       LINKS.FARM_DETAIL.HREF.replace('[token]', farm.tokenName)
     )
-  }
+  }, [farm, router])
 
   return (
     <div className={classes.root}>
@@ -123,14 +123,14 @@ const FarmItem = ({
       </div>
 
       <div className={classes.rowContainer}>
-        <div className={classes.colContainer}>
+        {/* <div className={classes.colContainer}>
           <Typography className={classes.label} align='center'>
             Static APY
           </Typography>
           <Typography color='primary' className={classes.value} align='center'>
             {(farm.staticAPY * 100).toLocaleString()}%
           </Typography>
-        </div>
+        </div> */}
         <div className={classes.colContainer}>
           <Typography className={classes.label} align='center'>
             Stake

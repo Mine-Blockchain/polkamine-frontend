@@ -28,15 +28,18 @@ const CONTRACTS = IS_MAINNET
     REWARD_DISTRIBUTOR: '0xD411Fcd301daF7c1E7a12541B8a474Dc12c886F9',
     TOKEN_SALE: '0x7e5b3ECc6978150543efa3527A5F4a9D1485AAbE'
   }
-
+  
 const PROVIDER = new ethers.providers.getDefaultProvider(IS_MAINNET ? 'homestead' : 'ropsten');
 
 const ETHERSCAN_URL = IS_MAINNET ? 'https://etherscan.io' : 'https://ropsten.etherscan.io'
+
+const PROXY_URL = 'https://vast-reef-88900.herokuapp.com'
 
 export {
   IS_MAINNET,
   CHAIN_ID,
   CONTRACTS,
   PROVIDER,
-  ETHERSCAN_URL
+  ETHERSCAN_URL,
+  PROXY_URL
 }

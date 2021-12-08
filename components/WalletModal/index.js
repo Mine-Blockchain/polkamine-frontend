@@ -1,5 +1,5 @@
 
-import { memo, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { UnsupportedChainIdError } from '@web3-react/core'
 import { NoEthereumProviderError, UserRejectedRequestError as UserRejectedRequestErrorInjected } from '@web3-react/injected-connector'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -55,14 +55,14 @@ const WalletModal = ({
 
   const walletConnectors = useMemo(() => isSm ? MOBILE_CONNECTORS : DESKTOP_CONNECTORS, [isSm]);
 
-  const metaMaskInstallHandler = () => {
+  const metaMaskInstallHandler = useCallback(() => {
     window.open('https://metamask.io/download', '_blank');
-  }
+  }, [])
 
-  const walletSelectHandler = (currentConnector) => {
+  const walletSelectHandler = useCallback((currentConnector) => {
     onConnectWallet(currentConnector)
     onClose();
-  }
+  }, [onClose, onConnectWallet])
 
   return (
     <PolkaDialog

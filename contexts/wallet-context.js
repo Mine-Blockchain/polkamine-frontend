@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 
 import useEagerConnect from 'utils/hooks/useEagerConnect'
@@ -22,10 +22,10 @@ export function WalletProvider({ children }) {
   const triedEager = useEagerConnect();
   useInactiveListener(!triedEager || !!activatingConnector)
 
-  const onConnectWallet = (injected) => {
+  const onConnectWallet = useCallback((injected) => {
     setActivatingConnector(injected);
     activate(injected);
-  }
+  }, [activate, setActivatingConnector])
 
   return (
     <ContractContext.Provider
@@ -52,13 +52,5 @@ export function useWallets() {
     throw new Error('Missing stats context')
   }
 
-  const {
-    setIsWalletDialog,
-    onConnectWallet
-  } = context
-
-  return {
-    setIsWalletDialog,
-    onConnectWallet
-  }
+  return context
 }

@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import { useFarm } from 'contexts/farm-context'
 import FarmHeader from './FarmHeader'
 import FarmItem from './FarmItem'
-import MnetFarm from './MnetFarm'
+// import MnetFarm from './MnetFarm'
 import { useCommonStyles } from 'styles/use-styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -38,9 +38,9 @@ const Farm = () => {
           <Grid item xs={12}>
             <FarmHeader />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <MnetFarm />
-          </Grid>
+          </Grid> */}
           {farms.map((item) => (
             <Grid key={item.tokenName} item xs={12} md={6}>
               <FarmItem farm={item} />

@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(5, 0)
   },
   header: {
+    fontSize: 24,
     fontWeight: 'bold',
+  },
+  description: {
+    fontSize: 14
   }
 }));
 
@@ -21,7 +25,6 @@ const HomeHeader = () => {
   return (
     <div className={classes.root}>
       <Typography
-        variant='h5'
         align='center'
         className={classes.header}
       >
@@ -30,9 +33,9 @@ const HomeHeader = () => {
       <Typography
         variant='body2'
         align='center'
+        className={classes.description}
       >
-        Purchase and stake hashrate certificates to earn
-        mining yields and MNET rewards
+        Purchase and stake hashrate certificates to earn mining yields and MNET rewards
       </Typography>
     </div>
   )
