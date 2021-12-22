@@ -74,7 +74,7 @@ export function DashboardProvider({ children }) {
         unsignedpETHMContract.totalSupply(),
         unsignedMNETContract.totalSupply(),
         CoinGeckoClient.simple.price({
-          ids: ['dai'],
+          ids: ['mine-network'],
           vs_currencies: ['usd'],
           include_market_cap: true
         })
@@ -87,11 +87,12 @@ export function DashboardProvider({ children }) {
       const pBTCSoldValue = ethers.utils.formatUnits(pBTCSold)
       const pETHSoldValue = ethers.utils.formatUnits(pETHSold)
       const mnetTotalSupplyValue = ethers.utils.formatUnits(mnetTotalSupply)
-      const { data: { dai = {} } = {} } = mnetInfo
-      const mnetAPY = dai.usd_market_cap / mnetTotalSupplyValue
-
+      const { data = {} } = mnetInfo
+      const mineNetwork = data['mine-network']
+      const mnetAPY = mineNetwork.usd_market_cap / mnetTotalSupplyValue
+      
       setTokens([
-        { ...mnetToken, price: dai.usd, totalSupply: mnetTotalSupplyValue, saleSupply: dai.usd_market_cap, apy: mnetAPY },
+        { ...mnetToken, price: mineNetwork.usd, totalSupply: mnetTotalSupplyValue, saleSupply: mineNetwork.usd_market_cap, apy: mnetAPY },
         { ...pBTCMToken, price: pBTCPriceValue, totalSupply: pBTCSupplyValue, saleSupply: pBTCSoldValue },
         { ...pETHMToken, price: pETHPriceValue, totalSupply: pETHSupplyValue, saleSupply: pETHSoldValue }
       ])
