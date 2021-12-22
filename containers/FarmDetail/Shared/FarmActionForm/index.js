@@ -45,7 +45,7 @@ const FarmActionForm = ({
         size={50}
       />
       <Typography color='textSecondary' className={classes.balance} align='center'>
-        {balance}
+        {parseFloat(balance).toLocaleString()}
       </Typography>
       <Typography color='textSecondary' className={classes.description} align='center'>
         {description}

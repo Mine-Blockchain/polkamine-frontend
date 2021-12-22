@@ -78,19 +78,19 @@ const TokenInfo = ({
         <Grid item xs={12} md={4}>
           <Typography className={classes.price}>
             Supply<br />
-            <span>{purchase.tokenSupply.toLocaleString()}</span>
+            <span>{parseFloat(purchase.tokenSupply).toLocaleString()}</span>
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Typography className={classes.price}>
             Sold<br />
-            <span>{purchase.sold.toLocaleString()}</span>
+            <span>{parseFloat(purchase.sold).toLocaleString()}</span>
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
           <Typography className={classes.price}>
             Available<br />
-            <span>{purchase.available.toLocaleString()}</span>
+            <span>{parseFloat(purchase.available).toLocaleString()}</span>
           </Typography>
         </Grid>
       </Grid>
