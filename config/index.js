@@ -33,7 +33,7 @@ const PROVIDER = new ethers.providers.getDefaultProvider(IS_MAINNET ? 'homestead
 
 const ETHERSCAN_URL = IS_MAINNET ? 'https://etherscan.io' : 'https://ropsten.etherscan.io'
 
-const PROXY_URL = 'http://35.72.245.67'
+const PROXY_URL = 'https://jktesting.ddns.net'
 
 export {
   IS_MAINNET,
